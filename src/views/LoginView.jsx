@@ -4,6 +4,7 @@ import {browserHistory} from "react-router";
 import "./LoginView.css";
 import {fetchAccessToken} from "../data/api";
 import {parse} from "qs"
+import {AppModel} from "../model/AppModel";
 const FormItem = Form.Item;
 
 
@@ -149,3 +150,7 @@ class LoginView extends React.Component {
     }
 }
 export default LoginView = Form.create()(LoginView);
+
+LoginView.propTypes = {
+    appModel: React.PropTypes.instanceOf(AppModel).isRequired
+};

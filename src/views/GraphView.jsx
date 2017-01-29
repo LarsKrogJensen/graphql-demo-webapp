@@ -4,6 +4,7 @@ import {graphQuery} from "../data/api.js";
 import "../styles/graphiql.css";
 import {Alert,Icon} from "antd";
 import {browserHistory} from "react-router";
+import {AppModel} from "../model/AppModel";
 
 
 export default class GraphView extends React.Component {
@@ -61,3 +62,7 @@ export default class GraphView extends React.Component {
         )
     }
 }
+
+GraphView.propTypes = {
+    appModel: React.PropTypes.instanceOf(AppModel).isRequired
+};

@@ -9,5 +9,11 @@ export class AppModel {
     {
         this._token = newToken
     }
+}
 
+export class AccessToken
+{
+    access_token= null;
+    error = null;
+    error_description = null;
 }
