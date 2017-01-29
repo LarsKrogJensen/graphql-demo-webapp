@@ -142,7 +142,7 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.less$/,
-        loader: 'style!css!postcss!less?{modifyVars:{"@primary-color":"#1DA57A"}}'
+        loader: 'style!css!postcss!less'
       },
       {
         test: /\.css$/,
