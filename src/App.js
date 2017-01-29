@@ -10,19 +10,28 @@ import {AppModel} from "./model/AppModel";
 export default class App extends React.Component {
     appModel = new AppModel();
 
+
+    constructor()
+    {
+        super();
+        this.createSearchView = this.createSearchView.bind(this);
+        this.createAuthView = this.createAuthView.bind(this);
+        this.createGraphiQLView = this.createGraphiQLView.bind(this);
+    }
+
     createSearchView()
     {
-        return <SearchView appModel={{}}/>
+        return <SearchView appModel={this.appModel}/>
     }
 
     createAuthView()
     {
-        return <LoginView appModel={{}}/>
+        return <LoginView appModel={this.appModel}/>
     }
 
     createGraphiQLView()
     {
-        return <GraphView appModel={{}}/>
+        return <GraphView appModel={this.appModel}/>
     }
 
     render()

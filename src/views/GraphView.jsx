@@ -1,19 +1,21 @@
 import React from "react";
 import GraphiQL from "graphiql";
-import fetch from "isomorphic-fetch";
+import {graphQuery} from "../data/api.js";
 import "../styles/graphiql.css";
-import {Alert} from "antd";
+import {Alert,Icon} from "antd";
 import {browserHistory} from "react-router";
 
 
 export default class GraphView extends React.Component {
-    graphQLFetcher(graphQLParams)
+    constructor()
     {
-        return fetch('http://localhost:8080/graphql', {
-            method: 'post',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(graphQLParams),
-        }).then(response => response.json());
+        super();
+        this.graphFetcher = this.graphFetcher.bind(this);
+    }
+
+    graphFetcher(queryParams)
+    {
+        return graphQuery(queryParams, this.props.appModel.token.access_token);
     }
 
     renderGraphiQL()
@@ -25,7 +27,14 @@ export default class GraphView extends React.Component {
                     width: '100%',
                     overflow: 'hidden'
                 }}>
-                    <GraphiQL fetcher={this.graphQLFetcher}/>
+                    <GraphiQL fetcher={this.graphFetcher}>
+                        <GraphiQL.Logo>
+                            <div id="logo">
+                                <Icon type="upload"/>
+                                <span>Query Console</span>
+                            </div>
+                        </GraphiQL.Logo>
+                    </GraphiQL>
                 </div>
         );
     }
@@ -45,7 +54,7 @@ export default class GraphView extends React.Component {
                            closeText="LOG IN"
                            onClose={() =>
                            {
-                               browserHistory.push({pathname: "/auth", query: {goto: "/search"}})
+                               browserHistory.push({pathname: "/auth", query: {goto: "/graphiql"}})
                            }}
                     />
                 </div>

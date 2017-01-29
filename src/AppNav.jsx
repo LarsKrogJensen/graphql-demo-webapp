@@ -11,7 +11,6 @@ export default class AppNav extends React.Component {
 
     render()
     {
-
         return (
                 <Menu theme="dark"
                       mode="horizontal"
@@ -22,8 +21,14 @@ export default class AppNav extends React.Component {
                         <Icon type="user"/>
                         <span className="nav-text">Login</span>
                     </Menu.Item>
-                    <Menu.Item key="/search">Search</Menu.Item>
-                    <Menu.Item key="/graphiql">GraphQL</Menu.Item>
+                    <Menu.Item key="/search">
+                        <Icon type="search"/>
+                        <span className="nav-text">Search</span>
+                    </Menu.Item>
+                    <Menu.Item key="/graphiql">
+                        <Icon type="upload"/>
+                        <span className="nav-text">Console</span>
+                    </Menu.Item>
                 </Menu>
         )
     }

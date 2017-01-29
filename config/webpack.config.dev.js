@@ -61,11 +61,11 @@ module.exports = {
         publicPath: publicPath
     },
     resolve: {
-       modules: [
-           // paths.nodePaths
-           //paths.join(__dirname, "src"),
-           "node_modules"
-       ],
+        modules: [
+            // paths.nodePaths
+            //paths.join(__dirname, "src"),
+            "node_modules"
+        ],
         // This allows you to set a fallback for where Webpack should look for modules.
         // We read `NODE_PATH` environment variable in `paths.js` and pass paths here.
         // We use `fallback` instead of `root` because we want `node_modules` to "win"
@@ -161,12 +161,6 @@ module.exports = {
                     },
                     "postcss-loader"]
             },
-            // JSON is not enabled by default in Webpack but both Node and Browserify
-            // allow it implicitly so we also enable it.
-            // {
-            //     test: /\.json$/,
-            //     use: 'json-loader'
-            // },
             // "file" loader for svg
             {
                 test: /\.svg$/,
