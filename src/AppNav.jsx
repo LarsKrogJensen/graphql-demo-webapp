@@ -26,7 +26,7 @@ export default class AppNav extends React.Component {
                         <span className="nav-text">Search</span>
                     </Menu.Item>
                     <Menu.Item key="/graphiql">
-                        <Icon type="upload"/>
+                        <Icon type="laptop"/>
                         <span className="nav-text">Console</span>
                     </Menu.Item>
                 </Menu>

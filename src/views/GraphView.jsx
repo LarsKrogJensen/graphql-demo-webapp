@@ -2,18 +2,16 @@ import React from "react";
 import GraphiQL from "graphiql";
 import {graphQuery} from "../data/api.js";
 import "../styles/graphiql.css";
+// import "graphiql/graphiql.css"
 import {Alert,Icon} from "antd";
 import {browserHistory} from "react-router";
 import {AppModel} from "../model/AppModel";
+import { autobind } from 'core-decorators';
 
 
 export default class GraphView extends React.Component {
-    constructor()
-    {
-        super();
-        this.graphFetcher = this.graphFetcher.bind(this);
-    }
-
+ 
+    @autobind
     graphFetcher(queryParams)
     {
         return graphQuery(queryParams, this.props.appModel.token.access_token);
@@ -31,8 +29,8 @@ export default class GraphView extends React.Component {
                     <GraphiQL fetcher={this.graphFetcher}>
                         <GraphiQL.Logo>
                             <div id="logo">
-                                <Icon type="upload"/>
-                                <span>Query Console</span>
+                                <Icon type="laptop"/>
+                                <div style={{display: "inline", paddingLeft: "16px"}}>Query Console</div>
                             </div>
                         </GraphiQL.Logo>
                     </GraphiQL>
