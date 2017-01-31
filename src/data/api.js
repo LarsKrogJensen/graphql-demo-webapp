@@ -1,7 +1,7 @@
 // const baseUrL: string = "https://larskj-gql.herokuapp.com";
 const baseUrL = "http://localhost:8080";
 
-export function fetchAccessToken(usr, pwd)
+export async function fetchAccessToken(usr, pwd)
 {
     let init = {
         method: 'POST',
@@ -16,11 +16,8 @@ export function fetchAccessToken(usr, pwd)
         credentials: 'include',
     };
 
-    return fetch(baseUrL + "/authenticate", init)
-            .then(response =>
-                  {
-                      return response.json()
-                  })
+    let response = await fetch(baseUrL + "/authenticate", init);
+    return response.json();     
 }
 
 export function graphQuery(queryParams, token)
