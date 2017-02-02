@@ -3,7 +3,6 @@ import {
     createStore
 } from 'redux';
 import reducers from '../reducers';
-// import createLogger from "redux-logger"
 
 const middlewares = [];
 

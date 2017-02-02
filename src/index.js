@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import router from "./router";
-import store from "./store";
+import store from "./store/index";
 import {Provider} from "react-redux";
 import "./styles/theme.less";
 
