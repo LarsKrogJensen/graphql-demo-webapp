@@ -2,19 +2,24 @@ import React from "react";
 import GraphiQL from "graphiql";
 import {graphQuery} from "../data/api.js";
 import "../styles/graphiql.css";
-// import "graphiql/graphiql.css"
 import {Alert,Icon} from "antd";
 import {browserHistory} from "react-router";
-import {AppModel} from "../model/AppModel";
 import { autobind } from 'core-decorators';
 
 
 export default class GraphView extends React.Component {
  
     @autobind
-    graphFetcher(queryParams)
+    async graphFetcher(queryParams)
     {
-        return graphQuery(queryParams, this.props.appModel.token.access_token);
+        try {
+            return await graphQuery(queryParams, this.props.token.access_token);
+        } catch (e) {
+            console.log("Junk: " +e);
+            return {
+                data: e
+            }
+        }
     }
 
     renderGraphiQL()
@@ -40,7 +45,7 @@ export default class GraphView extends React.Component {
 
     render()
     {
-        if (this.props.appModel.token != null) {
+        if (this.props.token != null) {
             return this.renderGraphiQL()
         }
         return (
@@ -62,5 +67,5 @@ export default class GraphView extends React.Component {
 }
 
 GraphView.propTypes = {
-    appModel: React.PropTypes.instanceOf(AppModel).isRequired
+    // appModel: React.PropTypes.instanceOf(AppModel).isRequired
 };

@@ -1,38 +1,27 @@
 import React from "react";
 import {Alert, Form, Icon, Input, Button, Checkbox} from "antd";
-import {browserHistory} from "react-router";
 import "./LoginView.css";
-import {fetchAccessToken} from "../data/api";
-import {parse} from "qs"
-import {AppModel} from "../model/AppModel";
+import {autobind} from "core-decorators";
+import store from "../store";
+import {authInit} from "../actions/auth-actions";
 const FormItem = Form.Item;
 
-
-class LoginView extends React.Component {
-
-    queryParams = {
-
-    };
+class AuthForm extends React.Component {
 
     constructor()
     {
         super();
-        this.state = {
-            username: "",
-            password: "",
-            remember: true,
-            loading: false
-        };
 
-        let params = location.search;
-        if (params != null) {
-            params = params.substr(params.indexOf("?") + 1)
-            this.queryParams = parse(params)
-        }
+        // let params = location.search;
+        // if (params != null) {
+        //     params = params.substr(params.indexOf("?") + 1)
+        //     this.queryParams = parse(params)
+        // }
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    @autobind
     handleSubmit(e)
     {
         e.preventDefault();
@@ -40,38 +29,14 @@ class LoginView extends React.Component {
                                        {
                                            if (!err) {
                                                console.log('Received values of form: ', values);
+                                               store.dispatch(authInit(values.username,
+                                                                       values.password,
+                                                                       values.remember));
 
-                                               this.setState({
-                                                                 loading: true,
-                                                                 ...values
-                                                             }, () =>
-                                                             {
-                                                                 this.authenticate()
-                                                             })
+                                               this.props.authenticate(values.username,
+                                                                       values.password)
                                            }
                                        });
-    }
-
-    authenticate()
-    {
-        this.props.appModel.token = null;
-        try {
-            fetchAccessToken(this.state.username, this.state.password)
-                    .then(token =>
-                          {
-                              this.props.appModel.token = token;
-                              this.setState({loading: false});
-                              if (this.queryParams.goto != null)
-                                  browserHistory.push(this.queryParams.goto)
-                          })
-                    .catch(reason => console.log(reason));
-        } catch (e) {
-            this.props.appModel.token = {
-                error: "Authentication failed",
-                error_description: e.message
-            };
-            this.setState({loading: false});
-        }
     }
 
     renderForm()
@@ -80,7 +45,7 @@ class LoginView extends React.Component {
 
         let alert = null;
 
-        let token = this.props.appModel.token;
+        let token = this.props.token;
         if (token != null && token.error != null) {
             alert = (
                     <Alert
@@ -96,7 +61,7 @@ class LoginView extends React.Component {
                     <FormItem>
                         {getFieldDecorator('username', {
                             rules: [{required: true, message: 'Please input your username!'}],
-                            initialValue: this.state.username
+                            initialValue: this.props.username
                         })(
                                 <Input addonBefore={<Icon type="user"/>}
                                        placeholder="Username"/>
@@ -105,7 +70,7 @@ class LoginView extends React.Component {
                     <FormItem>
                         {getFieldDecorator('password', {
                             rules: [{required: true, message: 'Please input your Password!'}],
-                            initialValue: this.state.password
+                            initialValue: this.props.password
                         })(
                                 <Input addonBefore={<Icon type="lock"/>}
                                        type="password"
@@ -115,14 +80,14 @@ class LoginView extends React.Component {
                     <FormItem>
                         {getFieldDecorator('remember', {
                             valuePropName: 'checked',
-                            initialValue: this.state.remember,
+                            initialValue: this.props.remember,
                         })(
                                 <Checkbox>Remember me</Checkbox>
                         )}
                         <a className="login-form-forgot">Forgot password</a>
                         <Button type="primary"
                                 htmlType="submit"
-                                loading={this.state.loading}
+                                loading={this.props.loading}
                                 className="login-form-button">
                             Log in
                         </Button>
@@ -134,7 +99,7 @@ class LoginView extends React.Component {
 
     render()
     {
-        let token = this.props.appModel.token;
+        let token = this.props.token;
 
         let content;
         if (token != null && token.access_token != null) {
@@ -149,8 +114,9 @@ class LoginView extends React.Component {
         return <div style={{padding: 24}}> {content}</div>
     }
 }
-export default LoginView = Form.create()(LoginView);
 
-LoginView.propTypes = {
-    appModel: React.PropTypes.instanceOf(AppModel).isRequired
-};
+/// / AuthForm.propTypes = {
+//     //appModel: React.PropTypes.instanceOf(AppModel).isRequired
+// };
+export default AuthForm = Form.create()(AuthForm);
+
