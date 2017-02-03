@@ -2,7 +2,7 @@ import React from "react";
 import {Router, Route, browserHistory, IndexRedirect} from "react-router";
 import SearchContainer from "containers/search-form-container";
 import AuthContainer from "containers/auth-form-container";
-import GraphView from "views/GraphView";
+import GraphView from "views/graph-view";
 import NotFoundView from "views/NotFoundView";
 import AppFrame from "AppFrame";
 
