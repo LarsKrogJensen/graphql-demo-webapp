@@ -19,7 +19,7 @@ class SearchContainer extends React.Component {
             query: "{ listingSearch(searchQuery: \"" + searchQuery + "\") {id name longName}} }"
         });
 
-        queryApi.graphQuery(this.props.token, query)
+        queryApi.search(this.props.token, query)
     }
 
     render() {

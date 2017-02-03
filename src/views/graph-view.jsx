@@ -13,7 +13,7 @@ export default class GraphView extends React.Component {
     async graphFetcher(queryParams)
     {
         try {
-            return await graphQuery(queryParams, this.props.token.access_token);
+            return await graphQuery(this.props.token, JSON.stringify(queryParams));
         } catch (e) {
             console.log("Junk: " +e);
             return {

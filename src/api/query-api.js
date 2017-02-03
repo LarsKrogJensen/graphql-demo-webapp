@@ -2,6 +2,18 @@ import store from "store";
 import baseUrl from "api/base-url";
 import * as searchActions from "actions/search-actions";
 
+export async function search(token, queryParams) {
+    try {
+        let json = await graphQuery(token, queryParams);
+        store.dispatch(searchActions.searchSuccess(json.data.listingSearch))
+    } catch (e) {
+        store.dispatch(searchActions.searchFailed({
+            error: "Search failed",
+            error_description: e.message
+        }));
+    }
+}
+
 export async function graphQuery(token, queryParams) {
     let options = {
         method: 'post',
@@ -13,24 +25,7 @@ export async function graphQuery(token, queryParams) {
         credentials: 'include',
         body: queryParams,
     };
-    try {
-        let response = await fetch(baseUrl + '/graphql', options);
 
-        if (response.status === 200) {
-            let json = await response.json();
-            store.dispatch(searchActions.searchSuccess(json.data.listingSearch))
-        } else {
-            store.dispatch(searchActions.searchFailed({
-                error: "Search failed",
-                error_description: response.statusText
-            }));
-        }
-    } catch (e) {
-        store.dispatch(searchActions.searchFailed({
-            error: "Search failed",
-            error_description: e.message
-        }));
-    }
-
-
+    let response = await fetch(baseUrl + '/graphql', options);
+    return response.json();
 }
