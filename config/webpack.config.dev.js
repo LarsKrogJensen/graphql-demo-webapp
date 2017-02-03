@@ -65,7 +65,7 @@ module.exports = {
     resolve: {
         modules: [
             // paths.nodePaths
-            //paths.appSrc,
+            paths.appSrc,
             // paths.nodePaths
             "node_modules"
         ],

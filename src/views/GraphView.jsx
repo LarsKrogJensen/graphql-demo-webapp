@@ -1,7 +1,7 @@
 import React from "react";
 import GraphiQL from "graphiql";
-import {graphQuery} from "../data/api.js";
-import "../styles/graphiql.css";
+import {graphQuery} from "api/query-api";
+import "styles/graphiql.css";
 import {Alert,Icon} from "antd";
 import {browserHistory} from "react-router";
 import { autobind } from 'core-decorators';

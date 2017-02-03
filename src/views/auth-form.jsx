@@ -1,6 +1,6 @@
 import React from "react";
 import {Alert, Form, Icon, Input, Button, Checkbox} from "antd";
-import "./LoginView.css";
+import "./auth-form.css";
 import {autobind} from "core-decorators";
 import store from "../store";
 import {authInit} from "../actions/auth-actions";
