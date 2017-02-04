@@ -32,7 +32,7 @@ class GraphiqlContainer extends React.Component {
 
 const mapStateToProps = (store) => {
     return {
-        token: store.graphiqlState.token
+        token: store.authState.token.access_token,
     };
 };
 

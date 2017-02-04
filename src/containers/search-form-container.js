@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import SearchForm from "views/search-form"
 import {autobind, debounce} from "core-decorators";
 import store from "store"
-import * as searchActions from "../actions/search-actions"
+import * as searchActions from "actions/search-actions"
 
 class SearchContainer extends React.Component {
 
@@ -16,7 +16,15 @@ class SearchContainer extends React.Component {
         store.dispatch(searchActions.searchInit(searchQuery));
 
         let query = JSON.stringify({
-            query: "{ listingSearch(searchQuery: \"" + searchQuery + "\") {id name longName}} }"
+            query: `{ 
+                      listingSearch(searchQuery: "${searchQuery}") 
+                      { 
+                           id 
+                           name 
+                           longName
+                         }
+                       } 
+                    }`
         });
 
         queryApi.search(this.props.token, query)
@@ -36,7 +44,7 @@ class SearchContainer extends React.Component {
 
 const mapStateToProps = (store) => {
     return {
-        token: store.searchState.token,
+        token: store.authState.token.access_token,
         result: store.searchState.result,
         searchQuery: store.searchState.searchQuery,
         loading: store.searchState.loading

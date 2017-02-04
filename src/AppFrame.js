@@ -17,11 +17,12 @@ export default class AppFrame extends React.Component {
                 <Header style={{paddingLeft: 16, paddingRight: 32}}>
                     <img src={logo} className="App-logo" alt="logo"/>
                     <AppNav path={pathname}/>
+                    
                 </Header>
                 <Layout>
                     <Content style={{height: "100%"}}>
                         <ReactCSSTransitionGroup
-                                component={this.firstChild}
+                                component="div"
                                 transitionLeave={false}
                                 transitionName="example"
                                 transitionEnterTimeout={300}>

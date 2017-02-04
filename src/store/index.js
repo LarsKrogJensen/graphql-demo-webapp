@@ -1,28 +1,31 @@
 import {
-    // applyMiddleware,
-    // compose,
+    applyMiddleware,
+    compose,
     createStore
 } from 'redux';
+
+import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from '../reducers';
 
-// const middlewares = [];
-//
-// if (process.env.NODE_ENV === `development`) {
-//   const createLogger = require(`redux-logger`);
-//   const logger = createLogger();
-//   middlewares.push(logger);
-//   middlewares.push( window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-// }
-//
-// const composeEnhancers =
-//    process.env.NODE_ENV !== 'production' &&
-//    typeof window === 'object' &&
-//    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-//      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-//        // Specify extension’s options like name, actionsBlacklist, actionsCreators or immutablejs support if needed
-//      }) : compose;
-//
-// const store = createStore(reducers, composeEnhancers(applyMiddleware(...middlewares)));
+const middlewares = [];
+let composeEnhancers = compose;
 
-const store = createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+if (process.env.NODE_ENV === `development`) {
+    const createLogger = require(`redux-logger`);
+    const logger = createLogger();
+    middlewares.push(logger);
+
+    composeEnhancers = composeWithDevTools;
+}
+
+
+const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
+
+const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(...middlewares)));
+
+store.subscribe(() => {
+    localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+})
+
+
 export default store;
