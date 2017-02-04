@@ -3,6 +3,7 @@ import {Icon, Modal, Row, Col, Input, Table} from "antd"
 // import {browserHistory} from "react-router"
 import {autobind} from "core-decorators";
 import AuthContainer from "containers/auth-form-container"
+import "views/search-form.css"
 
 const Search = Input.Search;
 
@@ -12,6 +13,10 @@ export default class SearchForm extends React.Component {
     onSearchtextChanged(evt) {
         console.log("Search text changed: " + evt.target.value);
         this.props.search(evt.target.value)
+    }
+    @autobind
+    onRowClick(record, index) {
+        console.log(`Row clicked [${index}] record: ${record}`)
     }
 
     render() {
@@ -51,21 +56,26 @@ export default class SearchForm extends React.Component {
                                loading={this.props.loading}
                                locale={locale}
                                bordered={false}
+                               onRowClick={this.onRowClick}
                                size="small">
                             <Table.Column title='Id'
                                           key="id"
+                                          className="hand"
                                           dataIndex='id'
                                           width={100}/>
                             <Table.Column title='Score'
                                           key="score"
+                                          className="hand"
                                           dataIndex='score'
                                           width={150}/>
                             <Table.Column title='Name'
                                           key="name"
+                                          className="hand"
                                           dataIndex='name'
                                           width={150}/>
                             <Table.Column title='Long Name'
                                           key="longName"
+                                          className="hand"
                                           dataIndex='longName'/>
                         </Table>
                     </Col>
