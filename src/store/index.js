@@ -5,7 +5,8 @@ import {
 } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers from '../reducers';
+// import {debounce} from "core-decorators";
+import reducers from 'reducers';
 
 const middlewares = [];
 let composeEnhancers = compose;
@@ -24,8 +25,16 @@ const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStor
 const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(...middlewares)));
 
 store.subscribe(() => {
-    localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+    console.log("State change, about to save")
+    persistState()
+
 })
 
+// @debounce
+function persistState()
+{
+    console.log("saving")
+    localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+}
 
 export default store;

@@ -9,6 +9,7 @@ export function authInit(username, password, remember)
         remember: remember
     };
 }
+
 export function authSuccess(token)
 {
     return {
@@ -29,5 +30,11 @@ export function authExpired()
 {
     return {
         type: types.AUTH_EXPIRED,
+    };
+}
+export function authSignOut()
+{
+    return {
+        type: types.AUTH_SIGNOUT,
     };
 }

@@ -1,7 +1,8 @@
 import React from "react";
-import {Icon, Alert, Row, Col, Input, Table} from "antd"
-import {browserHistory} from "react-router"
+import {Icon, Modal, Row, Col, Input, Table} from "antd"
+// import {browserHistory} from "react-router"
 import {autobind} from "core-decorators";
+import AuthContainer from "containers/auth-form-container"
 
 const Search = Input.Search;
 
@@ -22,17 +23,11 @@ export default class SearchForm extends React.Component {
         if (token == null) {
             return (
                 <div style={{padding: 24}}>
-                    < Alert
-                        message="Not authenticated"
-                        description="This page requires a valid token, please sign in and try again"
-                        type="error"
-                        showIcon
-                        closable
-                        closeText="LOG IN"
-                        onClose={() => {
-                            browserHistory.push({pathname: "/auth", query: {goto: "/search"}})
-                        }}
-                    />
+
+                    <Modal title="Please sign in" visible={true}  closable={false}
+                           footer={[]}>
+                        <AuthContainer/>
+                    </Modal>
                 </div>
             )
         }

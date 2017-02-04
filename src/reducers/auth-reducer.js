@@ -8,8 +8,7 @@ const initialState = {
     loading: false
 };
 
-const authReducer = function (state = initialState, action)
-{
+const authReducer = function (state = initialState, action) {
     switch (action.type) {
 
         case types.AUTH_INIT:
@@ -31,7 +30,8 @@ const authReducer = function (state = initialState, action)
             });
 
         case types.AUTH_EXPIRED:
-            return Object.assign({}, state, {token: null});
+        case types.AUTH_SIGNOUT:
+            return Object.assign({}, state, {token: {}});
 
         default:
             return state;

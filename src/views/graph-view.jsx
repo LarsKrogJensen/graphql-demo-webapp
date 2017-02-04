@@ -2,9 +2,10 @@ import React from "react";
 import GraphiQL from "graphiql";
 import {graphQuery} from "api/query-api";
 import "styles/graphiql.css";
-import {Alert,Icon} from "antd";
-import {browserHistory} from "react-router";
+import {Modal,Icon} from "antd";
+// import {browserHistory} from "react-router";
 import { autobind } from 'core-decorators';
+import AuthContainer from "../containers/auth-form-container.js"
 
 
 export default class GraphView extends React.Component {
@@ -48,19 +49,13 @@ export default class GraphView extends React.Component {
         if (this.props.token != null) {
             return this.renderGraphiQL()
         }
+        
         return (
                 <div style={{padding: 24}}>
-                    <Alert message="Not authenticated"
-                           description="This page requires a valid token, please sign in and try again"
-                           type="error"
-                           showIcon
-                           closable
-                           closeText="LOG IN"
-                           onClose={() =>
-                           {
-                               browserHistory.push({pathname: "/auth", query: {goto: "/graphiql"}})
-                           }}
-                    />
+                    <Modal title="Please sign in" visible={true}  closable={false}
+                           footer={[]}>
+                        <AuthContainer/>
+                    </Modal>
                 </div>
         )
     }

@@ -55,7 +55,7 @@
     "whatwg-fetch": "2.0.2"
   },
   "dependencies": {
-    "antd": "^2.5.2",
+    "antd": "^2.7.0",
     "graphiql": "^0.9.1",
     "graphql": "^0.9.1",
     "lodash": "^4.17.4",
