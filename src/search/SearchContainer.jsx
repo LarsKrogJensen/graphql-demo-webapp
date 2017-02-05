@@ -6,13 +6,13 @@ import SearchForm from "./SearchForm"
 // import {autobind} from "core-decorators";
 import store from "../app/app-store"
 import * as actions from "./actions"
-import * as constants from "./constants"
+import constants from "./constants"
 import auth from "auth"
+import {autobind} from "core-decorators";
 
 class SearchContainer extends React.Component {
 
-    //@autobind
-    //@debounce
+    @autobind
     async onSearch(searchQuery) {
         console.log("* " + searchQuery);
         store.dispatch(actions.searchInit(searchQuery));
@@ -31,8 +31,10 @@ class SearchContainer extends React.Component {
 
         try {
             let json = await queryApi.graphQuery(this.props.token, query);
-            store.dispatch(actions.searchSuccess(json.data.listingSearch))
+            let result = json.data.listingSearch;
+            store.dispatch(actions.searchSuccess(result))
         } catch (e) {
+            console.log(e)
             store.dispatch(actions.searchFailed(
                 {
                     error: "Search Failed",
@@ -44,11 +46,8 @@ class SearchContainer extends React.Component {
 
     render() {
         return (
-            <SearchForm result={this.props.result}
-                        token={this.props.token}
-                        searchQuery={this.props.searchQuery}
-                        loading={this.props.loading}
-                        search={this.props.onSearch2}/>
+            <SearchForm search={this.onSearch}
+                        {...this.props}/>
         );
     }
 }
@@ -60,15 +59,18 @@ SearchContainer.propTypes = {
 const mapStateToProps = (store) => {
     return {
         token: store[auth.constants.NAME].token.access_token, // todo: not allow to lookup 'auth' by name
-        ...store[constants.NAME],
+        searchResult: store[constants.NAME].searchResult,
+        searchQuery: store[constants.NAME].searchQuery,
+        loading: store[constants.NAME].loading
+
     };
 };
 const mapDispatchToProps = (dispatch) => {
-  return {
-    onSearch2: (searchQuery) => {
-        console.log("onSearch2: " + searchQuery)
+    return {
+        onSearch2: (searchQuery) => {
+            console.log("onSearch2: " + searchQuery)
+        }
     }
-  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer) ;

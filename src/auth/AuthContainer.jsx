@@ -6,6 +6,7 @@ import AuthForm from "./AuthForm"
 import {autobind} from "core-decorators";
 import store from "app/app-store"
 import * as actions from "./actions"
+import constants from "./constants"
 
 class AuthContainer extends React.Component {
     @autobind
@@ -38,7 +39,7 @@ class AuthContainer extends React.Component {
 
 const mapStateToProps = (store) => {
     return {
-        ...store.authState
+        ...store[constants.NAME]
     };
 };
 

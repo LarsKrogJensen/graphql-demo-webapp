@@ -12,7 +12,7 @@ export default  (
                 <IndexRedirect to="/auth"/>
                 <Route path="/auth" component={AuthContainer}/>
                 <Route path="/search" component={SearchContainer}/>
-                <Route path="/graphiql" component={QueryConsoleContainer}/>
+                <Route path="/console" component={QueryConsoleContainer}/>
                 <Route path="*" component={NotFoundView}/>
             </Route>
         </Router>

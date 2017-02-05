@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === `development`) {
 }
 
 
-const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
+const persistedState = {}//localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
 
 const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(...middlewares)));
 

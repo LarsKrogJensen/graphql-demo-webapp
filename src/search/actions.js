@@ -1,10 +1,10 @@
 import * as types from "./action-types";
 
 
-export const searchSuccess = (result) => (
+export const searchSuccess = (searchResult) => (
     {
         type: types.SEARCH_SUCCESS,
-        result
+        searchResult
     }
 );
 

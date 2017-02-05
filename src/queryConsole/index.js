@@ -1,5 +1,5 @@
 import constants from './constants';
 import reducer from './reducer';
-import QueryConsoleView from "./QueryConsole"
+import QueryConsoleContainer from "./QueryConsoleContainer"
 
-export default { constants, reducer, QueryConsoleView};
+export default { constants, reducer, QueryConsoleContainer};

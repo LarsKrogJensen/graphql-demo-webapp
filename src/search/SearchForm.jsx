@@ -7,7 +7,7 @@ import {
     Input,
     Table
 } from "antd"
-import {autobind} from "core-decorators";
+import {autobind, debounce} from "core-decorators";
 import AuthContainer from "auth/AuthContainer"
 import "./search-form.css"
 
@@ -15,10 +15,17 @@ const Search = Input.Search;
 
 export default class SearchForm extends React.Component {
 
+    // @autobind
+    // @debounce
+    // onSearchtextChanged(evt) {
+    //     console.log("Search text changed: " + evt.target.value);
+    //     this.searchDebounced(evt.target.value)
+    // }
+
     @autobind
-    onSearchtextChanged(evt) {
-        console.log("Search text changed: " + evt.target.value);
-        this.props.search(evt.target.value)
+    @debounce(300)
+    searchDebounced(searchQuery) {
+        this.props.search(searchQuery)
     }
 
     @autobind
@@ -52,12 +59,12 @@ export default class SearchForm extends React.Component {
                             placeholder="input search text"
                             style={{width: 200}}
                             defaultValue={this.props.searchQuery}
-                            onChange={this.onSearchtextChanged}/>
+                            onChange={(evt) => this.searchDebounced(evt.target.value)}/>
                     </Col>
                 </Row>
                 <Row>
                     <Col span={24}>
-                        <Table dataSource={this.props.result}
+                        <Table dataSource={this.props.searchResult}
                                pagination={false}
                                rowKey="id"
                                loading={this.props.loading}
@@ -98,7 +105,7 @@ SearchForm.propTypes = {
     searchQuery: PropTypes.string.isRequired,
     token: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
-    result: PropTypes.arrayOf(React.PropTypes.shape({
+    searchResult: PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string,
         score: React.PropTypes.number,
         name: React.PropTypes.string,
