@@ -43,7 +43,7 @@ const mapStateToProps = (store) => {
 };
 
 
-const getDataThunk = (searchQuery) => {
+const searchThunk = (searchQuery) => {
     return (dispatch, getState) => {
         // thunk called
         dispatch(actions.searchInit(searchQuery));
@@ -52,12 +52,13 @@ const getDataThunk = (searchQuery) => {
         let token = state.token.access_token;
         actions.performSearch(token, searchQuery, queryApi.graphQuery)
             .then(json => dispatch(actions.searchSuccess(json.data.listingSearch)))
-            .catch(err => dispatch(actions.searchFailed("Failed", err)))
+            .catch(err => dispatch(actions.searchFailed("Failed", err.message)))
     }
-}
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        search: (searhQuery) => dispatch(getDataThunk(searhQuery))
+        search: (searhQuery) => dispatch(searchThunk(searhQuery))
     }
 };
 

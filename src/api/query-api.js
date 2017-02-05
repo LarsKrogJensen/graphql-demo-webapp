@@ -13,6 +13,13 @@ export async function graphQuery(token, queryParams) {
         body: queryParams,
     };
 
-    let response = await fetch(baseUrl + '/graphql', options);
-    return response.json();
+    // try {
+        let response = await fetch(baseUrl + '/graphqlWW', options);
+        if (response.ok)
+            return response.json();
+
+        throw new Error(response.statusText);
+    // } catch (e) {
+    //     throw e
+    // }
 }

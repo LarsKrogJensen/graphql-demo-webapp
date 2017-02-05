@@ -1,5 +1,6 @@
 import React, {PropTypes} from "react";
 import {
+    Alert,
     Icon,
     Modal,
     Row,
@@ -50,6 +51,10 @@ export default class SearchForm extends React.Component {
                 </div>
             )
         }
+        let alert;
+        if (this.props.error != null) {
+            alert = <Alert message={"Search failed: " + this.props.error_description} type="error" />
+        }
 
         return (
             <div style={{padding: 24}}>
@@ -62,6 +67,7 @@ export default class SearchForm extends React.Component {
                             onChange={(evt) => this.searchDebounced(evt.target.value)}/>
                     </Col>
                 </Row>
+                {alert}
                 <Row>
                     <Col span={24}>
                         <Table dataSource={this.props.searchResult}
@@ -105,6 +111,8 @@ SearchForm.propTypes = {
     searchQuery: PropTypes.string.isRequired,
     token: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    error_description: PropTypes.string,
     searchResult: PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string,
         score: React.PropTypes.number,

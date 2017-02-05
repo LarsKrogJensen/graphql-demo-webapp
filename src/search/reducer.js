@@ -3,7 +3,8 @@ import * as types from "./action-types";
 const initialState = {
     searchQuery: "",
     searchResult: [],
-    errorMessage: null,
+    error: null,
+    error_description: null,
     loading: false
 };
 
@@ -13,7 +14,7 @@ export default function (state = initialState, action) {
         case types.SEARCH_INIT:
             return Object.assign({}, state, {
                 loading: true,
-                errorMessage: null,
+                error_description: null,
                 ...action
             });
 
@@ -25,8 +26,9 @@ export default function (state = initialState, action) {
 
         case types.SEARCH_FAILED:
             return Object.assign({}, state, {
-                result: [],
-                loading: false
+                searchResult: [],
+                loading: false,
+                ...action
             });
 
         default:
