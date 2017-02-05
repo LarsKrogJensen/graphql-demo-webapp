@@ -13,8 +13,7 @@ class AuthForm extends React.Component {
             if (!err) {
                 console.log('Received values of form: ', values);
 
-                this.props.authenticate(values.username,
-                    values.password, values.remember)
+                this.props.authenticate(values.username, values.password, values.remember)
             }
         });
     }
@@ -36,8 +35,8 @@ class AuthForm extends React.Component {
         if (token != null && token.error != null) {
             alert = (
                 <Alert
-                    message="Login failed"
-                    description={token.error}
+                    message={token.error}
+                    description={token.error_description}
                     type="error"
                     showIcon/>)
         }
@@ -85,11 +84,7 @@ class AuthForm extends React.Component {
     }
 
     render() {
-
-        let content = this.renderForm();
-
-
-        return <div style={{padding: 24}}> {content}</div>
+        return <div style={{padding: 24}}> {this.renderForm()}</div>
     }
 }
 

@@ -3,39 +3,24 @@ import React from "react";
 import * as authApi from "api/auth-api";
 import {connect} from "react-redux";
 import AuthForm from "./AuthForm"
-import {autobind} from "core-decorators";
-import store from "app/app-store"
 import * as actions from "./actions"
 import constants from "./constants"
 
-class AuthContainer extends React.Component {
-    @autobind
-    async authenticate(username, password, remember) {
-        store.dispatch(actions.authInit(username, password, remember));
+// Stateless functional container component
+const AuthContainer = (props) => <AuthForm {...props}/>;
 
-        try {
-            let json = await authApi.authenticate(username, password);
-            store.dispatch(actions.authSuccess(json));
-           } catch (e) {
-               store.dispatch(actions.authFailed({
-                   error: "Authentication failed",
-                   error_description: e.message
-               }));
-           }
+
+// thunk that dispatches the auth request
+const authenticateThunk = (username, password, remember) => {
+    return (dispatch) => {
+        // thunk called
+        dispatch(actions.authInit(username, password, remember));
+
+        authApi.authenticate(username, password)
+            .then(json => dispatch(actions.authSuccess(json)))
+            .catch(err => dispatch(actions.authFailed("Signin failed", err.message)))
     }
-
-    render() {
-        return (
-            <AuthForm username={this.props.username}
-                      password={this.props.password}
-                      remember={this.props.remember}
-                      token={this.props.token}
-                      loading={this.props.loading}
-                      authenticate={this.authenticate}/>
-        );
-    }
-}
-
+};
 
 const mapStateToProps = (store) => {
     return {
@@ -43,4 +28,10 @@ const mapStateToProps = (store) => {
     };
 };
 
-export default connect(mapStateToProps)(AuthContainer) ;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        authenticate: (username, password, remember) => dispatch(authenticateThunk(username, password, remember))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer) ;
