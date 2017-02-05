@@ -9,7 +9,6 @@ export const searchSuccess = (result) => (
 );
 
 
-
 export const searchInit = (searchQuery) => (
     {
         type: types.SEARCH_INIT,

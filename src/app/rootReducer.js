@@ -1,14 +1,14 @@
 import {combineReducers} from "redux";
 // Reducers
-import authReducer from "reducers/auth-reducer";
+import auth from "auth";
 import search from "search";
-import graphiql from "reducers/graphiql-reducer"
+import console from "queryConsole"
 
 // Combine Reducers
 const reducers = combineReducers({
-    authState: authReducer,
+    [auth.constants.NAME]: auth.reducer,
     [search.constants.NAME]: search.reducer,
-    graphiqlState: graphiql
+    [console.constants.NAME]: console.reducer
 });
 
 export default reducers;

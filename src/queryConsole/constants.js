@@ -1,4 +1,4 @@
 
 export default {
-    NAME: "search"
+    NAME: "console"
 }

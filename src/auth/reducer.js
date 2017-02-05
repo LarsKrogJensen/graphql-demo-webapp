@@ -1,4 +1,4 @@
-import * as types from "actions/action-types";
+import * as types from "./action-types.js";
 
 const initialState = {
     token: {},
@@ -8,7 +8,7 @@ const initialState = {
     loading: false
 };
 
-const authReducer = function (state = initialState, action) {
+export default  function (state = initialState, action) {
     switch (action.type) {
 
         case types.AUTH_INIT:
@@ -38,5 +38,3 @@ const authReducer = function (state = initialState, action) {
 
     }
 };
-
-export default authReducer;

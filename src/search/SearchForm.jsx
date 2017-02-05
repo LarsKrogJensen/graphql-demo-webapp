@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import {
     Icon,
     Modal,
@@ -8,7 +8,7 @@ import {
     Table
 } from "antd"
 import {autobind} from "core-decorators";
-import AuthContainer from "containers/auth-form-container"
+import AuthContainer from "auth/AuthContainer"
 import "./search-form.css"
 
 const Search = Input.Search;
@@ -94,5 +94,14 @@ export default class SearchForm extends React.Component {
 }
 
 SearchForm.propTypes = {
-    // appModel: React.PropTypes.instanceOf(AppModel).isRequired
+    search: PropTypes.func.isRequired,
+    searchQuery: PropTypes.string.isRequired,
+    token: PropTypes.string.isRequired,
+    loading: PropTypes.bool.isRequired,
+    result: PropTypes.arrayOf(React.PropTypes.shape({
+        id: React.PropTypes.string,
+        score: React.PropTypes.number,
+        name: React.PropTypes.string,
+        longName: React.PropTypes.string,
+    }))
 };

@@ -1,9 +1,7 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import {Alert, Modal, Form, Icon, Input, Button, Checkbox} from "antd";
 import "./auth-form.css";
 import {autobind} from "core-decorators";
-import store from "store";
-import {authInit} from "actions/auth-actions";
 const FormItem = Form.Item;
 
 class AuthForm extends React.Component {
@@ -14,12 +12,9 @@ class AuthForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log('Received values of form: ', values);
-                store.dispatch(authInit(values.username,
-                    values.password,
-                    values.remember));
 
                 this.props.authenticate(values.username,
-                    values.password)
+                    values.password, values.remember)
             }
         });
     }
@@ -90,29 +85,25 @@ class AuthForm extends React.Component {
     }
 
     render() {
-        let token = this.props.token;
 
-        let content;
-        if (token != null && token.access_token != null) {
-            // content = ( <Alert message="Authenticated"
-            //                    description="You are already successfully authenticated"
-            //                    type="success"
-            //                    showIcon
-            //                    closable
-            //                    closeText="LOG OUT"
-            //                    onClose={() => {
-            //                        store.dispatch(authSignOut());
-            //                    } }/> )
-        } else {
-            content = this.renderForm();
-        }
+        let content = this.renderForm();
+
 
         return <div style={{padding: 24}}> {content}</div>
     }
 }
 
-/// / AuthForm.propTypes = {
-//     //appModel: React.PropTypes.instanceOf(AppModel).isRequired
-// };
+AuthForm.propTypes = {
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    remember: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
+    token: React.PropTypes.shape({
+        access_token: React.PropTypes.string,
+        error: React.PropTypes.string,
+        error_description: React.PropTypes.string
+    }).isRequired
+
+};
 export default AuthForm = Form.create()(AuthForm);
 

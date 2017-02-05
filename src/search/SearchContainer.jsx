@@ -3,17 +3,19 @@ import React from "react";
 import * as queryApi from "api/query-api";
 import {connect} from "react-redux";
 import SearchForm from "./SearchForm"
-import {autobind, debounce} from "core-decorators";
-import store from "store"
-import search from "search"
+// import {autobind} from "core-decorators";
+import store from "../app/app-store"
+import * as actions from "./actions"
+import * as constants from "./constants"
+import auth from "auth"
 
 class SearchContainer extends React.Component {
 
-    @autobind
-    @debounce
+    //@autobind
+    //@debounce
     async onSearch(searchQuery) {
         console.log("* " + searchQuery);
-        store.dispatch(search.actions.searchInit(searchQuery));
+        store.dispatch(actions.searchInit(searchQuery));
 
         let query = JSON.stringify({
             query: `{ 
@@ -29,9 +31,9 @@ class SearchContainer extends React.Component {
 
         try {
             let json = await queryApi.graphQuery(this.props.token, query);
-            store.dispatch(search.actions.searchSuccess(json.data.listingSearch))
+            store.dispatch(actions.searchSuccess(json.data.listingSearch))
         } catch (e) {
-            store.dispatch(search.actions.searchFailed(
+            store.dispatch(actions.searchFailed(
                 {
                     error: "Search Failed",
                     error_description: e.message
@@ -46,17 +48,27 @@ class SearchContainer extends React.Component {
                         token={this.props.token}
                         searchQuery={this.props.searchQuery}
                         loading={this.props.loading}
-                        search={this.onSearch}/>
+                        search={this.props.onSearch2}/>
         );
     }
 }
 
+SearchContainer.propTypes = {
+    // no explicit props accepted, though redux injects some from search state
+};
 
 const mapStateToProps = (store) => {
     return {
-        token: store.authState.token.access_token,
-        ...store[search.constants.NAME],
+        token: store[auth.constants.NAME].token.access_token, // todo: not allow to lookup 'auth' by name
+        ...store[constants.NAME],
     };
 };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSearch2: (searchQuery) => {
+        console.log("onSearch2: " + searchQuery)
+    }
+  }
+};
 
-export default connect(mapStateToProps)(SearchContainer) ;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer) ;

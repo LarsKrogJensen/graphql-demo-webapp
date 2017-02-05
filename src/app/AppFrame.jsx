@@ -2,7 +2,7 @@ import React from "react";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import {Layout} from "antd";
 import "./AppFrame.css"
-import logo from "./assets/logo.svg";
+import logo from "assets/logo.svg";
 import AppNav from "./AppNav";
 const {Header, Content} = Layout;
 
@@ -37,10 +37,10 @@ export default class AppFrame extends React.Component {
         </div>
     }
 
-    //avoid inserting a container
-    firstChild(props) {
-      const childrenArray = React.Children.toArray(props.children);
-      return childrenArray[0] || null;
-    }
+    //avoid inserting a container hmm: causes strange errors at runtime
+    // firstChild(props) {
+    //   const childrenArray = React.Children.toArray(props.children);
+    //   return childrenArray[0] || null;
+    // }
 }
 

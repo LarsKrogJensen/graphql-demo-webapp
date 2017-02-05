@@ -7,7 +7,7 @@ const initialState = {
     loading: false
 };
 
-const searchReducer = function (state = initialState, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
 
         case types.SEARCH_INIT:
@@ -35,4 +35,3 @@ const searchReducer = function (state = initialState, action) {
     }
 };
 
-export default searchReducer;

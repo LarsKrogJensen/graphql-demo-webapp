@@ -1,14 +1,13 @@
 import React from "react";
 import GraphiQL from "graphiql";
 import {graphQuery} from "api/query-api";
-import "styles/graphiql.css";
+import "./graphiql.css";
 import {Modal,Icon} from "antd";
-// import {browserHistory} from "react-router";
 import { autobind } from 'core-decorators';
-import AuthContainer from "../containers/auth-form-container.js"
+import AuthContainer from "auth/AuthContainer"
 
 
-export default class GraphView extends React.Component {
+export default class QueryConsole extends React.Component {
  
     @autobind
     async graphFetcher(queryParams)
@@ -61,6 +60,6 @@ export default class GraphView extends React.Component {
     }
 }
 
-GraphView.propTypes = {
+QueryConsole.propTypes = {
     // appModel: React.PropTypes.instanceOf(AppModel).isRequired
 };

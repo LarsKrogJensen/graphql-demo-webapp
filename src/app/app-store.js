@@ -5,8 +5,7 @@ import {
 } from 'redux';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
-// import {debounce} from "core-decorators";
-import reducers from 'reducers';
+import reducers from './rootReducer';
 
 const middlewares = [];
 let composeEnhancers = compose;

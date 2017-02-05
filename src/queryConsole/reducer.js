@@ -3,7 +3,7 @@
 const initialState = {
 };
 
-const graphiqlReducer = function (state = initialState, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
         
 
@@ -13,4 +13,3 @@ const graphiqlReducer = function (state = initialState, action) {
     }
 };
 
-export default graphiqlReducer;
