@@ -1,9 +1,15 @@
 import React from "react";
-import {Icon, Modal, Row, Col, Input, Table} from "antd"
-// import {browserHistory} from "react-router"
+import {
+    Icon,
+    Modal,
+    Row,
+    Col,
+    Input,
+    Table
+} from "antd"
 import {autobind} from "core-decorators";
 import AuthContainer from "containers/auth-form-container"
-import "views/search-form.css"
+import "./search-form.css"
 
 const Search = Input.Search;
 
@@ -14,6 +20,7 @@ export default class SearchForm extends React.Component {
         console.log("Search text changed: " + evt.target.value);
         this.props.search(evt.target.value)
     }
+
     @autobind
     onRowClick(record, index) {
         console.log(`Row clicked [${index}] record: ${record}`)
@@ -29,7 +36,7 @@ export default class SearchForm extends React.Component {
             return (
                 <div style={{padding: 24}}>
 
-                    <Modal title="Please sign in" visible={true}  closable={false}
+                    <Modal title="Please sign in" visible={true} closable={false}
                            footer={[]}>
                         <AuthContainer/>
                     </Modal>
@@ -61,6 +68,7 @@ export default class SearchForm extends React.Component {
                             <Table.Column title='Id'
                                           key="id"
                                           className="hand"
+                                          sorter={true}
                                           dataIndex='id'
                                           width={100}/>
                             <Table.Column title='Score'
@@ -70,6 +78,7 @@ export default class SearchForm extends React.Component {
                                           width={150}/>
                             <Table.Column title='Name'
                                           key="name"
+                                          sorter={true}
                                           className="hand"
                                           dataIndex='name'
                                           width={150}/>

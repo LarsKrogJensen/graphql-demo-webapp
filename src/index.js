@@ -4,6 +4,7 @@ import router from "router";
 import store from "store/index";
 import {Provider} from "react-redux";
 import "styles/theme.less";
+import "styles/index.css"
 
 // Provider is a top-level component that wraps our entire application, including
 // the Router. We pass it a reference to the store so we can use react-redux's

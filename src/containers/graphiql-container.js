@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import GraphView from "views/graph-view"
 // import {autobind, debounce} from "core-decorators";
 // import store from "store"
-// import * as searchActions from "../actions/search-actions"
+// import * as actions from "../actions/search-actions"
 
 class GraphiqlContainer extends React.Component {
 
@@ -13,7 +13,7 @@ class GraphiqlContainer extends React.Component {
     // @debounce
     // search(searchQuery) {
     //     console.log("* " + searchQuery);
-    //     store.dispatch(searchActions.searchInit(searchQuery));
+    //     store.dispatch(actions.searchInit(searchQuery));
     //
     //     let query = JSON.stringify({
     //         query: "{ listingSearch(searchQuery: \"" + searchQuery + "\") {id name longName}} }"

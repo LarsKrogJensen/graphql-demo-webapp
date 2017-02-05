@@ -1,18 +1,5 @@
-import store from "store";
 import baseUrl from "api/base-url";
-import * as searchActions from "actions/search-actions";
 
-export async function search(token, queryParams) {
-    try {
-        let json = await graphQuery(token, queryParams);
-        store.dispatch(searchActions.searchSuccess(json.data.listingSearch))
-    } catch (e) {
-        store.dispatch(searchActions.searchFailed({
-            error: "Search failed",
-            error_description: e.message
-        }));
-    }
-}
 
 export async function graphQuery(token, queryParams) {
     let options = {

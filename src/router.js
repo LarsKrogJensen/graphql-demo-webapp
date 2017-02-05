@@ -1,6 +1,6 @@
 import React from "react";
 import {Router, Route, browserHistory, IndexRedirect} from "react-router";
-import SearchContainer from "containers/search-form-container";
+import SearchContainer from "search/SearchContainer";
 import AuthContainer from "containers/auth-form-container";
 import GraphiqlContainer from "containers/graphiql-container";
 import NotFoundView from "views/NotFoundView";

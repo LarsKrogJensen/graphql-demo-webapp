@@ -16,7 +16,7 @@ export default class AppNav extends React.Component {
                       mode="horizontal"
                       onSelect={this.onMenuSelected}
                       selectedKeys={[this.props.path]}
-                      style={{lineHeight: '64px', float: "right"}}>
+                      style={{lineHeight: '63px', float: "right"}}>
                     <Menu.Item key="/auth">
                         <Icon type="user"/>
                         <span className="nav-text">Login</span>
