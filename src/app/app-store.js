@@ -3,12 +3,15 @@ import {
     compose,
     createStore
 } from 'redux';
-
+import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension';
-import reducers from './rootReducer';
+import reducers from './root-reducer';
 
 const middlewares = [];
 let composeEnhancers = compose;
+
+
+middlewares.push(thunk);
 
 if (process.env.NODE_ENV === `development`) {
     const createLogger = require(`redux-logger`);

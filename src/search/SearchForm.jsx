@@ -39,7 +39,7 @@ export default class SearchForm extends React.Component {
         };
 
         let token = this.props.token;
-        if (token == null) {
+        if (token == null || token === "") {
             return (
                 <div style={{padding: 24}}>
 

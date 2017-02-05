@@ -25,3 +25,21 @@ export const searchFailed = (error, error_description) => (
     }
 );
 
+export function performSearch(token, searchQuery, graphQuery) {
+    let query = JSON.stringify({
+        query: `{ 
+                   listingSearch(searchQuery: "${searchQuery}") 
+                   { 
+                      id 
+                      name 
+                      longName
+                   }
+                } 
+         }`
+    });
+
+    return graphQuery(token, query);
+}
+
+
+

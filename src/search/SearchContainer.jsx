@@ -6,7 +6,7 @@ import SearchForm from "./SearchForm"
 // import {autobind} from "core-decorators";
 import store from "../app/app-store"
 import * as actions from "./actions"
-import constants from "./constants"
+import searchConstants from "./constants"
 import auth from "auth"
 import {autobind} from "core-decorators";
 
@@ -17,37 +17,12 @@ class SearchContainer extends React.Component {
         console.log("* " + searchQuery);
         store.dispatch(actions.searchInit(searchQuery));
 
-        let query = JSON.stringify({
-            query: `{ 
-                      listingSearch(searchQuery: "${searchQuery}") 
-                      { 
-                           id 
-                           name 
-                           longName
-                         }
-                       } 
-                    }`
-        });
 
-        try {
-            let json = await queryApi.graphQuery(this.props.token, query);
-            let result = json.data.listingSearch;
-            store.dispatch(actions.searchSuccess(result))
-        } catch (e) {
-            console.log(e)
-            store.dispatch(actions.searchFailed(
-                {
-                    error: "Search Failed",
-                    error_description: e.message
-                }
-            ))
-        }
     }
 
     render() {
         return (
-            <SearchForm search={this.onSearch}
-                        {...this.props}/>
+            <SearchForm {...this.props}/>
         );
     }
 }
@@ -58,19 +33,33 @@ SearchContainer.propTypes = {
 
 const mapStateToProps = (store) => {
     return {
-        token: store[auth.constants.NAME].token.access_token, // todo: not allow to lookup 'auth' by name
-        searchResult: store[constants.NAME].searchResult,
-        searchQuery: store[constants.NAME].searchQuery,
-        loading: store[constants.NAME].loading
-
+        token: store[auth.constants.NAME].token.access_token || "", // todo: not allow to lookup 'auth' by name
+        ...store[searchConstants.NAME],
+        // searchResult: store[searchConstants.NAME].searchResult,
+        // searchQuery: store[searchConstants.NAME].searchQuery,
+        // loading: store[searchConstants.NAME].loading
+        //search: doSearch
     };
 };
-const mapDispatchToProps = (dispatch) => {
+
+
+const getDataThunk = (searchQuery) => {
+    return (dispatch, getState) => {
+        // thunk called
+        dispatch(actions.searchInit(searchQuery));
+        // we need to pull the access token 
+        let state = getState()[auth.constants.NAME];
+        let token = state.token.access_token;
+        actions.performSearch(token, searchQuery, queryApi.graphQuery)
+            .then(json => dispatch(actions.searchSuccess(json.data.listingSearch)))
+            .catch(err => dispatch(actions.searchFailed("Failed", err)))
+    }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onSearch2: (searchQuery) => {
-            console.log("onSearch2: " + searchQuery)
-        }
+        search: (searhQuery) => dispatch(getDataThunk(searhQuery))
     }
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer) ;
