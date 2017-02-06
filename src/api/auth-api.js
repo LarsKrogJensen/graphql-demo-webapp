@@ -1,15 +1,6 @@
 import baseUrl from "api/base-url";
 
 
-// export class AuthResponse {
-//     constructor(data) {
-//         Object.assign(this, data);
-//     }
-//     token;
-//     error;
-//     error_description;
-// }
-
 export async function authenticate(username, password) {
     let init = {
         method: 'POST',

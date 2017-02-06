@@ -1,3 +1,4 @@
+// @flow
 import React, {PropTypes} from "react";
 import {
     Alert,
@@ -25,7 +26,7 @@ export default class SearchForm extends React.Component {
 
     @autobind
     @debounce(300)
-    searchDebounced(searchQuery) {
+    searchDebounced(searchQuery: string) {
         this.props.search(searchQuery)
     }
 

@@ -1,14 +1,8 @@
-import React from "react";
-
 import * as authApi from "api/auth-api";
 import {connect} from "react-redux";
 import AuthForm from "./AuthForm"
 import * as actions from "./actions"
 import constants from "./constants"
-
-// Stateless functional container component
-const AuthContainer = (props) => <AuthForm {...props}/>;
-
 
 // thunk that dispatches the auth request
 const authenticateThunk = (username, password, remember) => {
@@ -34,4 +28,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer) ;
+export default connect(mapStateToProps, mapDispatchToProps)(AuthForm);

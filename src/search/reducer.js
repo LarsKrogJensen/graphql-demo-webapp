@@ -1,14 +1,22 @@
 import * as types from "./action-types";
 
-const initialState = {
+type State = {
+    searchQuery: string;
+    searchResult: Array<Object>;
+    error: string;
+    error_description: string;
+    loading: boolean;
+
+}
+const initialState: State = {
     searchQuery: "",
     searchResult: [],
     error: null,
     error_description: null,
-    loading: false
+    loadin: false
 };
 
-export default function (state = initialState, action) {
+export default function (state: State = initialState, action) {
     switch (action.type) {
 
         case types.SEARCH_INIT:

@@ -1,7 +1,8 @@
+// @flow
 import * as types from "./action-types";
 
 
-export const searchSuccess = (searchResult) => (
+export const searchSuccess = (searchResult: Array<Object>) => (
     {
         type: types.SEARCH_SUCCESS,
         searchResult
@@ -9,7 +10,7 @@ export const searchSuccess = (searchResult) => (
 );
 
 
-export const searchInit = (searchQuery) => (
+export const searchInit = (searchQuery: string) => (
     {
         type: types.SEARCH_INIT,
         searchQuery
@@ -17,7 +18,7 @@ export const searchInit = (searchQuery) => (
 );
 
 
-export const searchFailed = (error, error_description) => (
+export const searchFailed = (error: string, error_description: string) => (
     {
         type: types.SEARCH_FAILED,
         error,
@@ -25,12 +26,13 @@ export const searchFailed = (error, error_description) => (
     }
 );
 
-export function performSearch(token, searchQuery, graphQuery) {
+export function performSearch(token: string, searchQuery: string, graphQuery: (string, string)=> {}) {
     let query = JSON.stringify({
         query: `{ 
                    listingSearch(searchQuery: "${searchQuery}") 
                    { 
                       id 
+                      score
                       name 
                       longName
                    }

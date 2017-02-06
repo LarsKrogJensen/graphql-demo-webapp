@@ -1,6 +1,7 @@
+//@flow
 import * as types from "./action-types.js";
 
-export function authInit(username, password, remember) {
+export function authInit(username : string, password : string, remember : boolean) {
     return {
         type: types.AUTH_INIT,
         username: username,
@@ -9,14 +10,14 @@ export function authInit(username, password, remember) {
     };
 }
 
-export function authSuccess(token) {
+export function authSuccess(token: string) {
     return {
         type: types.AUTH_SUCCESS,
         token: token
     };
 }
 
-export function authFailed(error, error_description) {
+export function authFailed(error : string, error_description : string) {
     return {
         type: types.AUTH_FAILED,
         token: {

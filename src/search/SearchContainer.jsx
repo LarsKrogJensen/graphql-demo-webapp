@@ -1,5 +1,3 @@
-import React from "react";
-
 import * as queryApi from "api/query-api";
 import {connect} from "react-redux";
 import SearchForm from "./SearchForm"
@@ -10,8 +8,6 @@ import auth from "auth"
 // Stateless functional container component that wraps the SearchForm
 // react-redux and redux-thunk will dynaimcally
 // prepare thr props to include everything
-// required by SearchForm
-const SearchContainer = (props) => <SearchForm {...props}/>;
 
 const mapStateToProps = (store) => {
     return {
@@ -19,7 +15,6 @@ const mapStateToProps = (store) => {
         ...store[searchConstants.NAME]
     };
 };
-
 
 const searchThunk = (searchQuery) => {
     return (dispatch, getState) => {
@@ -30,7 +25,7 @@ const searchThunk = (searchQuery) => {
         let token = state.token.access_token;
         actions.performSearch(token, searchQuery, queryApi.graphQuery)
             .then(json => dispatch(actions.searchSuccess(json.data.listingSearch)))
-            .catch(err => dispatch(actions.searchFailed("Failed", err.message)))
+            .catch(err => dispatch(actions.searchFailed("Search failed", err.message)))
     }
 };
 
@@ -41,4 +36,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchContainer) ;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm) ;
