@@ -13,7 +13,7 @@ const initialState: State = {
     searchResult: [],
     error: null,
     error_description: null,
-    loadin: false
+    loading: false
 };
 
 export default function (state: State = initialState, action) {

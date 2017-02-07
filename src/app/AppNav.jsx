@@ -1,37 +1,63 @@
 import React from "react";
+import {connect} from "react-redux";
 import {Menu, Icon} from "antd";
 import {browserHistory} from "react-router";
+const SubMenu = Menu.SubMenu;
+import auth from "auth"
+import {autobind} from "core-decorators";
 
-export default class AppNav extends React.Component {
-    onMenuSelected(param)
-    {
+class AppNav extends React.Component {
+
+    @autobind
+    onMenuSelected(param) {
         console.log(param.key);
-        browserHistory.push(param.key)
+
+        if (param.key === "/signout") {
+           this.props.signout()
+        } else {
+            browserHistory.push(param.key)
+        }
     }
 
-    render()
-    {
+    render() {
         return (
-                <Menu theme="dark"
-                      mode="horizontal"
-                      onSelect={this.onMenuSelected}
-                      selectedKeys={[this.props.path]}
-                      style={{lineHeight: '63px', float: "right"}}>
-                    <Menu.Item key="/auth">
-                        <Icon type="user"/>
-                        <span className="nav-text">Login</span>
-                    </Menu.Item>
-                    <Menu.Item key="/search">
-                        <Icon type="search"/>
-                        <span className="nav-text">Search</span>
-                    </Menu.Item>
-                    <Menu.Item key="/console">
-                        <Icon type="laptop"/>
-                        <span className="nav-text">Console</span>
-                    </Menu.Item>
-                </Menu>
+            <Menu theme="dark"
+                  mode="horizontal"
+                  onSelect={this.onMenuSelected}
+                  selectedKeys={[this.props.path]}
+                  style={{lineHeight: '63px', float: "right"}}>
+                <Menu.Item key="/docs">
+                    <Icon type="user"/>
+                    <span className="nav-text">Docs</span>
+                </Menu.Item>
+                <Menu.Item key="/search">
+                    <Icon type="search"/>
+                    <span className="nav-text">Search</span>
+                </Menu.Item>
+                <Menu.Item key="/console">
+                    <Icon type="laptop"/>
+                    <span className="nav-text">Console</span>
+                </Menu.Item>
+                <SubMenu title={<Icon type="user"/>}>
+                    <Menu.Item key="/signout">Sign out</Menu.Item>
+                </SubMenu>
+            </Menu>
+
         )
     }
 }
+const mapStateToProps = (store, ownProps) => {
+    return {
+        ...ownProps
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signout: () => dispatch(auth.actions.authSignOut())
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppNav);
 
 

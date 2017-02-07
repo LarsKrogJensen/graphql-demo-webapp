@@ -9,7 +9,6 @@ const paths = require('./paths');
 const path = require('path');
 
 
-
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -108,6 +107,10 @@ module.exports = {
                 enforce: 'pre',
                 include: paths.appSrc,
             },
+            // {
+            //     test: /\.md$/,
+            //     loader: 'raw-loader'
+            // },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
@@ -121,7 +124,8 @@ module.exports = {
                     /\.less$/,
                     /\.css$/,
                     /\.json$/,
-                    /\.svg$/
+                    /\.svg$/,
+                    /\.md$/,
                 ],
                 loader: 'url-loader',
                 options: {
@@ -135,9 +139,9 @@ module.exports = {
                 include: paths.appSrc,
                 loader: 'babel-loader',
                 options: {
-                    plugins: [
-                        ['import', [{libraryName: 'antd', style: true}]],
-                    ],
+                    // plugins: [
+                    //     ['import', [{libraryName: 'antd', style: true}]],
+                    // ],
                     // This is a feature of `babel-loader` for webpack (not Babel itself).
                     // It enables caching results in ./node_modules/.cache/babel-loader/
                     // directory for faster rebuilds.
@@ -166,7 +170,7 @@ module.exports = {
             },
             // "file" loader for svg
             {
-                test: /\.svg$/,
+                test: /\.(svg|md)$/,
                 loader: 'file-loader',
                 options: {
                     name: 'static/media/[name].[hash:8].[ext]'
