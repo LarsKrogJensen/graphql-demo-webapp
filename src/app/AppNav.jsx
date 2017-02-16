@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {Menu, Icon} from "antd";
+import {Menu, Icon, Badge} from "antd";
 import {browserHistory} from "react-router";
 const SubMenu = Menu.SubMenu;
 import auth from "auth"
@@ -20,6 +20,8 @@ class AppNav extends React.Component {
     }
 
     render() {
+        let subMenuTitle = <Badge count={1} style={{ backgroundColor: '#87d068' }} ><Icon type="user"/> </Badge>
+
         return (
             <Menu theme="dark"
                   mode="horizontal"
@@ -38,7 +40,7 @@ class AppNav extends React.Component {
                     <Icon type="laptop"/>
                     <span className="nav-text">Console</span>
                 </Menu.Item>
-                <SubMenu title={<Icon type="user"/>}>
+                <SubMenu title={subMenuTitle}>
                     <Menu.Item key="/signout">Sign out</Menu.Item>
                 </SubMenu>
             </Menu>

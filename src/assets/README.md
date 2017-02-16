@@ -1,82 +1,245 @@
 ---
-category: Components
-type: Data Entry
-title: Upload
+__Advertisement :)__
+
+- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
+  resize in browser.
+- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
+  i18n with plurals support and easy syntax.
+
+You will like those projects!
+
 ---
 
-Upload file by selecting or dragging.
+# h1 Heading 8-)
+## h2 Heading
+### h3 Heading
+#### h4 Heading
+##### h5 Heading
+###### h6 Heading
 
-## When To Use
 
-Uploading is the process of publishing information (web pages, text, pictures, video, etc.) to a remote server via a web page or upload tool.
+## Horizontal Rules
 
-- When you need to upload one or more files.
-- When you need to show the process of uploading.
-- When you need to upload files by dragging and dropping.
+___
 
-## API
+---
 
-> You can consult [jQuery-File-Upload](https://github.com/blueimp/jQuery-File-Upload/wiki) about how to implement server side upload interface.
+***
 
-| Property       | Description                                    | Type        | Default|
-|------------|----------------------------------------------------| ----------- |--------|
-| name       | The name of uploading file               | string      | 'file' |
-| defaultFileList | Default list of files that have been uploaded.                   | object[] | -  |
-| fileList   | List of files that have been uploaded (controlled). Here is a common issue [#2423](https://github.com/ant-design/ant-design/issues/2423) when using it | object[] | - |
-| action     | Required. Uploading URL                            | string      | -    |
-| data       | Uploading params or function which can return uploading params. | object\|function(file) | - |
-| headers    | Set request headers, valid above IE10.   | object      | -    |
-| showUploadList | Whether to show default upload list, could be an object to specify `showPreviewIcon` and `showRemoveIcon` individually | Boolean or { showPreviewIcon?: boolean, showRemoveIcon?: boolean } | true |
-| multiple   | Whether to support selected multiple file. `IE10+` supported. You can select multiple files with CTRL holding down while multiple is set to be true  | boolean     | false |
-| accept     | File types that can be accepted. See [input accept Attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)    | string      | -   |
-| beforeUpload | Hook function which will be executed before uploading. Uploading will be stopped with `false` or a rejected Promise returned. **Warning：this function is not supported by old IE**。 | (file, fileList) => `boolean | Promise`    | -    |
-| customRequest | override for the default xhr behavior allowing for additional customization and ability to implement your own XMLHttpRequest | Function | - |
-| onChange   | A callback function, can be executed when uploading state is changing. See [onChange](#onChange)                | Function    | -   |
-| listType   | Built-in stylesheets, support for two types: `text` or `picture`     | string      | 'text'|
-| onPreview  | A callback function, will be executed when file link or preview icon is clicked.  | Function(file) | -  |
-| onRemove   | A callback function, will be executed when removing file button is clicked, remove event will be prevented when return value is `false` | Function(file): boolean | -   |
-| supportServerRender | Need to be turned on while the server side is rendering.| boolean | false    |
-| disabled | disable upload button | boolean | false    |
-| withCredentials | ajax upload with cookie sent | boolean | false |
 
-### onChange
+## Typographic replacements
 
-> The function will be called when uploading is in progress, completed or  failed
+Enable typographer option to see result.
 
-When uploading state change, it returns:
+(c) (C) (r) (R) (tm) (TM) (p) (P) +-
 
-```js
-{
-  file: { /* ... */ },
-  fileList: [ /* ... */ ],
-  event: { /* ... */ },
-}
+test.. test... test..... test?..... test!....
+
+!!!!!! ???? ,,  -- ---
+
+"Smartypants, double quotes" and 'single quotes'
+
+
+## Emphasis
+
+**This is bold text**
+
+__This is bold text__
+
+*This is italic text*
+
+_This is italic text_
+
+~~Strikethrough~~
+
+
+## Blockquotes
+
+
+> Blockquotes can also be nested...
+>> ...by using additional greater-than signs right next to each other...
+> > > ...or with spaces between arrows.
+
+
+## Lists
+
+Unordered
+
++ Create a list by starting a line with `+`, `-`, or `*`
++ Sub-lists are made by indenting 2 spaces:
+  - Marker character change forces new list start:
+    * Ac tristique libero volutpat at
+    + Facilisis in pretium nisl aliquet
+    - Nulla volutpat aliquam velit
++ Very easy!
+
+Ordered
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
+
+
+1. You can use sequential numbers...
+1. ...or keep all the numbers as `1.`
+
+Start numbering with offset:
+
+57. foo
+1. bar
+
+
+## Code
+
+Inline `code`
+
+Indented code
+
+    // Some comments
+    line 1 of code
+    line 2 of code
+    line 3 of code
+
+
+Block code "fences"
+
+```
+Sample text here...
 ```
 
-1. `file` File object for the current operation.
+Syntax highlighting
 
-   ```js
-   {
-      uid: 'uid',      // unique identifier，negative is recommend，to prevent interference with internal generated id
-      name: 'xx.png'   // file name
-      status: 'done',  // options：uploading, done, error, removed
-      response: '{"status": "success"}',  // response from server
-   }
-   ```
+``` js
+var foo = function (bar) {
+  return bar++;
+};
 
-   > Before `antd@1.9.0`, this parameter will be Array Object `[file, ...]` in multiple mode, while in `antd@1.9.0+`, it will always be an Object.
+console.log(foo(5));
+```
 
-2. `fileList` current list of files
-3. `event` response from server, including uploading progress, supported by advanced browsers.
+## Tables
 
-## show download links
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
 
-Please set property `url` of property `fileList` to control content of link
+Right aligned columns
 
-## customRequest
+| Option | Description |
+| ------:| -----------:|
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
 
-* https://github.com/react-component/upload#customrequest
 
-## IE note
+## Links
 
-- [https://github.com/react-component/upload#ie89-note](https://github.com/react-component/upload#ie89-note)
+[link text](http://dev.nodeca.com)
+
+[link with title](http://nodeca.github.io/pica/demo/ "title text!")
+
+Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+
+
+## Images
+
+![Minion](https://octodex.github.com/images/minion.png)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+
+Like links, Images also have a footnote style syntax
+
+![Alt text][id]
+
+With a reference later in the document defining the URL location:
+
+[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+
+
+## Plugins
+
+The killer feature of `markdown-it` is very effective support of
+[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
+
+
+### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
+
+> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
+>
+> Shortcuts (emoticons): :-) :-( 8-) ;)
+
+see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
+
+
+### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
+
+- 19^th^
+- H~2~O
+
+
+### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
+
+++Inserted text++
+
+
+### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
+
+==Marked text==
+
+
+### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
+
+Footnote 1 link[^first].
+
+Footnote 2 link[^second].
+
+Inline footnote^[Text of inline footnote] definition.
+
+Duplicated footnote reference[^second].
+
+[^first]: Footnote **can have markup**
+
+    and multiple paragraphs.
+
+[^second]: Footnote text.
+
+
+### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
+
+Term 1
+
+:   Definition 1
+with lazy continuation.
+
+Term 2 with *inline markup*
+
+:   Definition 2
+
+        { some code, part of Definition 2 }
+
+    Third paragraph of definition 2.
+
+_Compact style:_
+
+Term 1
+  ~ Definition 1
+
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
+
+
+### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
+
+This is HTML abbreviation example.
+
+It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
+
+*[HTML]: Hyper Text Markup Language
+
+### [Custom containers](https://github.com/markdown-it/markdown-it-container)
+
+::: warning
+*here be dragons*
+:::

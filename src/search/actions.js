@@ -1,8 +1,10 @@
 // @flow
 import * as types from "./action-types";
+import type  {SearchSuccessAction} from "./action-types"
 
 
-export const searchSuccess = (searchResult: Array<Object>) => (
+
+export const searchSuccess = (searchResult: Array<SearchItem>) : SearchSuccessAction => (
     {
         type: types.SEARCH_SUCCESS,
         searchResult

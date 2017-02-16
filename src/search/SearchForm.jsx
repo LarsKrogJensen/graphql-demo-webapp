@@ -16,14 +16,7 @@ import "./search-form.css"
 const Search = Input.Search;
 
 export default class SearchForm extends React.Component {
-
-    // @autobind
-    // @debounce
-    // onSearchtextChanged(evt) {
-    //     console.log("Search text changed: " + evt.target.value);
-    //     this.searchDebounced(evt.target.value)
-    // }
-
+    
     @autobind
     @debounce(300)
     searchDebounced(searchQuery: string) {
