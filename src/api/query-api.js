@@ -13,7 +13,7 @@ export async function graphQuery(token, queryParams) {
         body: queryParams,
     };
 
-    let response = await fetch(baseUrl + '/graphql', options);
+    let response = await fetch(baseUrl() + '/graphql', options);
     if (response.ok)
         return response.json();
 

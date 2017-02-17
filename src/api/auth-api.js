@@ -16,7 +16,7 @@ export async function authenticate(username, password) {
     };
 
 
-    let response = await fetch(baseUrl + "/authenticate", init);
+    let response = await fetch(baseUrl() + "/authenticate", init);
     return response.json();
 
 

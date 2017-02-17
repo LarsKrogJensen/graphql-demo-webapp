@@ -78,7 +78,8 @@ module.exports = {
         //fallback: paths.nodePaths,
         modules: [
             // paths.nodePaths
-            //paths.join(__dirname, "src"),
+            paths.appSrc,
+            // paths.nodePaths
             "node_modules"
         ],
         // These are the reasonable defaults supported by the Node ecosystem.
