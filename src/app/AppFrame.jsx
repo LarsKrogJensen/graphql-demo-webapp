@@ -1,5 +1,5 @@
 import React from "react";
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+// import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import {Layout} from "antd";
 import "./AppFrame.css"
 import logo from "assets/logo.svg";
@@ -21,16 +21,7 @@ export default class AppFrame extends React.Component {
                 </Header>
                 <Layout>
                     <Content style={{height: "100%"}}>
-                        <ReactCSSTransitionGroup
-                                component="div"
-                                transitionLeave={false}
-                                transitionName="example"
-                                transitionEnterTimeout={300}>
-                            <div key={location.pathname}>
-                                {this.props.children}
-                            </div>
-                        </ReactCSSTransitionGroup>
-                        
+                        {this.props.children}
                     </Content>
                 </Layout>
             </Layout>
@@ -44,3 +35,13 @@ export default class AppFrame extends React.Component {
     // }
 }
 
+//
+// <ReactCSSTransitionGroup
+//                                 component="div"
+//                                 transitionLeave={false}
+//                                 transitionName="example"
+//                                 transitionEnterTimeout={300}>
+//                             <div key={location.pathname}>
+//                                 {this.props.children}
+//                             </div>
+//                         </ReactCSSTransitionGroup>
