@@ -1,4 +1,4 @@
 import React from "react";
 
 export default (props) =>
-    <p>Dev errors</p>;
+    <p>Domain event group</p>;

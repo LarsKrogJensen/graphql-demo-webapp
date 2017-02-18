@@ -1,4 +1,6 @@
 import React from "react";
 
 export default (props) =>
-    <p>Dev errors</p>;
+    <div>
+        <p>Ref outcome</p>;
+    </div>
