@@ -15,6 +15,26 @@ ___
 
 ***
 
+## Example
+
+This markdown file is also example.
+
+You can use SuperComponent with children
+
+```javascript
+( <SuperComponent>
+    HELLO AFRICA
+  </SuperComponent> )
+```
+
+[My super example, click to view](http://istarkov.github.io/react-components-markdown/#exampleMain)
+
+Or just
+
+```javascript
+( <SuperComponent /> )
+```
+[My super example 2, click to view](http://istarkov.github.io/react-components-markdown/#exampleSecondary)
 
 ## Typographic replacements
 
