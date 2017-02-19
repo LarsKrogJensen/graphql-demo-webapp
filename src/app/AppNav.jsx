@@ -28,7 +28,7 @@ class AppNav extends React.Component {
                   onSelect={this.onMenuSelected}
                   selectedKeys={[this.props.path]}
                   style={{lineHeight: '63px', float: "right"}}>
-                <Menu.Item key="/docs">
+                <Menu.Item key="/docs/intro">
                     <Icon type="user"/>
                     <span className="nav-text">Docs</span>
                 </Menu.Item>

@@ -27,7 +27,7 @@ import paths from "./paths";
 
 export default  (
     <Route path={paths.Index.toString()} component={DocsContainer}>
-        <IndexRedirect to={paths.Intro.Index.toString()}/>
+        <IndexRedirect to={paths.Intro.Overview.toString()}/>
         <Route path={paths.Intro.Index.toString()}>
             <IndexRedirect to={paths.Intro.Overview.toString()}/>
             <Route path={paths.Intro.Overview.toString()} component={IntroOverview}/>

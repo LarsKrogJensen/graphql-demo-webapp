@@ -10,7 +10,8 @@ import docs from "../docs/routes"
 export default  (
     <Router history={browserHistory}>
         <Route path="/" component={AppFrame}>
-            <IndexRedirect to="/docs"/>
+            
+            <IndexRedirect to="/docs/intro"/>
             {docs}
             <Route path="/search" component={SearchContainer}/>
             <Route path="/console" component={QueryConsoleContainer}/>

@@ -40,7 +40,7 @@ export default class IntroContact extends React.Component {
                           exampleSecondary={
                         <SuperComponent />
                       }
-                exampleConsole={
+                          exampleConsole={
                     <QueryConsole embedded={true}/>
                 }>
                     {this.state.content}

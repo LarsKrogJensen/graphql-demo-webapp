@@ -55,9 +55,10 @@
 }
 
 .graphiql-container .topBarWrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  /*display: -webkit-box;*/
+  /*display: -ms-flexbox;*/
+  /*display: flex;*/
+  display: none;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -68,8 +69,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: -webkit-linear-gradient(#f7f7f7, #e2e2e2);
-  background: linear-gradient(#f7f7f7, #e2e2e2);
+  background: -webkit-linear-gradient(#e2e2e2, #e2e2e2);
+  background: linear-gradient(#e2e2e2, #e2e2e2);
   border-bottom: 1px solid #d0d0d0;
   cursor: default;
   display: -webkit-box;
@@ -95,8 +96,8 @@
 }
 
 .graphiql-container .docExplorerShow {
-  background: -webkit-linear-gradient(#f7f7f7, #e2e2e2);
-  background: linear-gradient(#f7f7f7, #e2e2e2);
+  background: -webkit-linear-gradient(#e2e2e2, #e2e2e2);
+  background: linear-gradient(#e2e2e2, #e2e2e2);
   border-bottom: 1px solid #d0d0d0;
   border-left: 1px solid rgba(0, 0, 0, 0.2);
   border-right: none;
@@ -195,9 +196,10 @@
 }
 
 .graphiql-container .variable-editor {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  /*display: -webkit-box;*/
+  /*display: -ms-flexbox;*/
+  /*display: flex;*/
+  display: none;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
