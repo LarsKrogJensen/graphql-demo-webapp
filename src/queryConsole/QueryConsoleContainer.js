@@ -1,16 +1,30 @@
 import React from "react";
 
-// import * as queryApi from "api/query-api";
+import {graphQuery} from "api/query-api";
 import {connect} from "react-redux";
 import QueryConsoleView from "./QueryConsole"
+import EmbeddedQueryConsoleView from "./EmbeddedQueryConsole"
 import auth from "auth"
+import {autobind} from "core-decorators";
 
 class QueryConsoleContainer extends React.Component {
 
+    @autobind
+    async graphFetcher(queryParams) {
+        try {
+            return await graphQuery(this.props.token, JSON.stringify(queryParams));
+        } catch (e) {
+            return {
+                data: e
+            }
+        }
+    }
+
     render() {
-        return (
-            <QueryConsoleView {...this.props}/>
-        );
+        if (this.props.embedded) {
+            return <EmbeddedQueryConsoleView fetcher={this.graphFetcher} {...this.props}/>
+        }
+        return <QueryConsoleView fetcher={this.graphFetcher} {...this.props}/>
     }
 }
 
