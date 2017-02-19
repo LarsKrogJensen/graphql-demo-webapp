@@ -9,7 +9,7 @@ class QueryConsoleContainer extends React.Component {
 
     render() {
         return (
-            <QueryConsoleView token={this.props.token}/>
+            <QueryConsoleView {...this.props}/>
         );
     }
 }

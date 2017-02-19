@@ -36,6 +36,9 @@ Or just
 ```
 [My super example 2, click to view](http://istarkov.github.io/react-components-markdown/#exampleSecondary)
 
+
+[Query console, click to view](http://istarkov.github.io/react-components-markdown/#exampleConsole)
+
 ## Typographic replacements
 
 Enable typographer option to see result.

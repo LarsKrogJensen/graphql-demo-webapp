@@ -4,6 +4,7 @@ import Markdown from 'react-components-markdown';
 import {BackTop} from "antd"
 import "../markdown.css"
 import SuperComponent from '../components/super';
+import QueryConsole from '../../queryConsole/QueryConsoleContainer'
 
 export default class IntroContact extends React.Component {
 
@@ -38,7 +39,10 @@ export default class IntroContact extends React.Component {
                       }
                           exampleSecondary={
                         <SuperComponent />
-                      }>
+                      }
+                exampleConsole={
+                    <QueryConsole embedded={true}/>
+                }>
                     {this.state.content}
                 </Markdown>
             </div>
