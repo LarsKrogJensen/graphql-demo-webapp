@@ -18,6 +18,7 @@ class IntroContact extends React.Component {
 
     render() {
 
+        // added feature x comment
         return (
             <div>
                 <BackTop/>
