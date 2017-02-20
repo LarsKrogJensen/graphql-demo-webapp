@@ -8,7 +8,7 @@ import withMarkdown from "../MarkdownContainer"
 
 class IntroContact extends React.Component {
 
-    query1 = `{ 
+    query = `{ 
   listing(id: "847") { 
     id 
     name 
@@ -22,7 +22,7 @@ class IntroContact extends React.Component {
             <div>
                 <BackTop/>
 
-                <Markdown exampleConsole={ <QueryConsole embedded={true} query={this.query1} /> }>
+                <Markdown exampleConsole={ <QueryConsole embedded={true} query={this.query} /> }>
                 {this.props.content}
                 </Markdown>
             </div>
