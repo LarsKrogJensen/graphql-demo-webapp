@@ -14,6 +14,8 @@ export default (props) =>
         </Anchor>
         <section>
             <h2>What is GraphQL?</h2>
+            <p>GraphQL is a new way to think about building and querying APIs. Rather than construct several REST requests to fetch data that you're interested in, you can often make a single call to fetch the information you need.
+            GraphQL is, above all, a querying language, and the format of the query you send matches the data you receive. For example, given the following query:</p>
         </section>
         <section>
             <h2>Why is GitHub using GraphQL?</h2>

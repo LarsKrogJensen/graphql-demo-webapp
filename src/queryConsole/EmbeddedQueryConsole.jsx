@@ -23,6 +23,7 @@ export default class EmbeddedQueryConsole extends React.Component {
             <div style={style}>
                 <GraphiQL fetcher={this.props.fetcher}
                           embedded
+                          query={this.props.query}
                           editorTheme="mdn-like">
                 </GraphiQL>
             </div>
@@ -32,6 +33,7 @@ export default class EmbeddedQueryConsole extends React.Component {
 
 EmbeddedQueryConsole.propTypes = {
     token: PropTypes.string,
+    query: PropTypes.string,
     embedded: PropTypes.bool,
     fetcher: PropTypes.func.isRequired
 };

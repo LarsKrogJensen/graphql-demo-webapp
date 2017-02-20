@@ -1,30 +1,20 @@
 import React from "react";
-import readme from "../../assets/README.md"
+import src from "../../assets/README.md"
 import Markdown from 'react-components-markdown';
 import {BackTop} from "antd"
 import "../markdown.css"
-import SuperComponent from '../components/super';
 import QueryConsole from '../../queryConsole/QueryConsoleContainer'
+import withMarkdown from "../MarkdownContainer"
 
-export default class IntroContact extends React.Component {
+class IntroContact extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {content: "Loading..."};
-    }
+    query1 = `{ 
+  listing(id: "847") { 
+    id 
+    name 
+  } 
+}`;
 
-    async loadMarkdown(url) {
-        let resp = await fetch(url);
-        let text = await resp.text();
-
-        this.setState({content: text});
-    };
-
-    componentDidMount() {
-        this.loadMarkdown(readme).catch(err => {
-            console.log(err)
-        })
-    }
 
     render() {
 
@@ -32,21 +22,13 @@ export default class IntroContact extends React.Component {
             <div>
                 <BackTop/>
 
-                <Markdown exampleMain={
-                        <SuperComponent>
-                          HELLO AFRICA
-                        </SuperComponent>
-                      }
-                          exampleSecondary={
-                        <SuperComponent />
-                      }
-                          exampleConsole={
-                    <QueryConsole embedded={true}/>
-                }>
-                    {this.state.content}
+                <Markdown exampleConsole={ <QueryConsole embedded={true} query={this.query1} /> }>
+                {this.props.content}
                 </Markdown>
             </div>
         )
     }
 }
+
+export default withMarkdown(IntroContact, src);
 

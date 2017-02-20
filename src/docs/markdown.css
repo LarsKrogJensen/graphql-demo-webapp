@@ -255,7 +255,7 @@
 .github-markdown__markdown-body__97ba8 h6 {
   margin-top: 1em;
   margin-bottom: 16px;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -363,9 +363,13 @@
   border: 0 none;
 }
 
-.github-markdown__markdown-body__97ba8 ul,
+.github-markdown__markdown-body__97ba8 ul {
+  padding-left: 2em;
+  list-style-type: circle;
+}
 .github-markdown__markdown-body__97ba8 ol {
   padding-left: 2em;
+  list-style-type: decimal;
 }
 
 .github-markdown__markdown-body__97ba8 ul ul,
@@ -452,6 +456,7 @@
   font-size: 85%;
   background-color: rgba(0,0,0,0.04);
   border-radius: 3px;
+  border: 1px solid #ccc;
 }
 
 .github-markdown__markdown-body__97ba8 code:before,
@@ -467,7 +472,7 @@
   word-break: normal;
   white-space: pre;
   background: transparent;
-  border: 0;
+  border: 1px solid #ccc;
 }
 
 .github-markdown__markdown-body__97ba8 .github-markdown__highlight__98995 {
@@ -482,6 +487,7 @@
   line-height: 1.45;
   background-color: #f7f7f7;
   border-radius: 3px;
+  border: 1px solid #ccc;
 }
 
 .github-markdown__markdown-body__97ba8 .github-markdown__highlight__98995 pre {
