@@ -24,7 +24,7 @@ class IntroContact extends React.Component {
             <div>
                 <BackTop/>
 
-                <Markdown exampleConsole={ <QueryConsole embedded={true} query={this.query} /> }>
+                <Markdown exampleConsole={ <div style={{paddingTop:16, paddingBottom: 16}}><QueryConsole embedded={true} query={this.query} /> </div>}>
                 {this.props.content}
                 </Markdown>
             </div>
