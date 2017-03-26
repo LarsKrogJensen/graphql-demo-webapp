@@ -15,6 +15,9 @@ class QueryConsoleContainer extends React.Component {
         try {
             return await graphQuery(this.props.token, JSON.stringify(queryParams));
         } catch (e) {
+            if (e.message === "Unauthorized") {
+                this.props.authExpired()
+            }
             return {
                 data: e
             }
@@ -35,5 +38,10 @@ const mapStateToProps = (store) => {
         token: store[auth.constants.NAME].token.access_token
     };
 };
+const mapDispatchToProps = (dispatch) => {
+    return {
+        authExpired: () => dispatch(auth.actions.authExpired())
+    }
+};
 
-export default connect(mapStateToProps)(withAuth(QueryConsoleContainer)) ;
+export default connect(mapStateToProps, mapDispatchToProps)(withAuth(QueryConsoleContainer)) ;

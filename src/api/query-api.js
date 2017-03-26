@@ -17,5 +17,5 @@ export async function graphQuery(token, queryParams) {
     if (response.ok)
         return response.json();
 
-    throw new Error(response.statusText);
+    throw new Error(response.statusText, response.status);
 }

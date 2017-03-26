@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {Menu, Icon, Badge} from "antd";
-import {browserHistory} from "react-router";
+import {hashHistory} from "react-router";
 const SubMenu = Menu.SubMenu;
 import auth from "auth"
 import {autobind} from "core-decorators";
@@ -15,7 +15,7 @@ class AppNav extends React.Component {
         if (param.key === "/signout") {
            this.props.signout()
         } else {
-            browserHistory.push(param.key)
+            hashHistory.push(param.key)
         }
     }
 

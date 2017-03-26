@@ -1,5 +1,5 @@
 import React from "react";
-import {Router, Route, browserHistory, IndexRedirect} from "react-router";
+import {Router, Route, hashHistory, IndexRedirect} from "react-router";
 import SearchContainer from "search/SearchContainer";
 import QueryConsoleContainer from "queryConsole/QueryConsoleContainer";
 import NotFoundView from "views/NotFoundView";
@@ -8,7 +8,7 @@ import docs from "../docs/routes"
 
 
 export default  (
-    <Router history={browserHistory}>
+    <Router history={hashHistory}>
         <Route path="/" component={AppFrame}>
             
             <IndexRedirect to="/docs/intro"/>

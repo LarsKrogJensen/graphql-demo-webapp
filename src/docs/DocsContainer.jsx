@@ -1,6 +1,6 @@
 import React from "react";
 
-import {browserHistory} from "react-router";
+import {hashHistory} from "react-router";
 import {Layout, Menu, Icon, BackTop} from 'antd';
 import {autobind} from "core-decorators";
 const {SubMenu} = Menu;
@@ -13,7 +13,7 @@ export default class DocsContainer extends React.Component {
     @autobind
     onMenuSelected(param) {
         console.log(param.key);
-        browserHistory.push(param.key)
+        hashHistory.push(param.key)
     }
 
     render() {

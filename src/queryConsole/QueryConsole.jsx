@@ -1,6 +1,7 @@
 import React, {PropTypes} from "react";
 //import GraphiQL from "./CustomGraphiQL";
 import GraphiQL from "graphiql"
+import {Icon} from "antd"
 import "codemirror/theme/mdn-like.css"
 
 
@@ -17,7 +18,13 @@ export default class QueryConsole extends React.Component {
         return (
             <div style={style}>
                 <GraphiQL fetcher={this.props.fetcher}>
-                          editorTheme="mdn-like">
+                    editorTheme="mdn-like">
+                    <GraphiQL.Logo>
+                        <div id="logo">
+                            <Icon type="laptop"/>
+                            <div style={{display: "inline", paddingLeft: "16px"}}>Query Console</div>
+                        </div>
+                    </GraphiQL.Logo>
                 </GraphiQL>
             </div>
         );
