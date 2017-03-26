@@ -6,6 +6,7 @@ import QueryConsoleView from "./QueryConsole"
 import EmbeddedQueryConsoleView from "./EmbeddedQueryConsole"
 import auth from "auth"
 import {autobind} from "core-decorators";
+import withAuth from "auth/AuthGuard";
 
 class QueryConsoleContainer extends React.Component {
 
@@ -35,4 +36,4 @@ const mapStateToProps = (store) => {
     };
 };
 
-export default connect(mapStateToProps)(QueryConsoleContainer) ;
+export default connect(mapStateToProps)(withAuth(QueryConsoleContainer)) ;

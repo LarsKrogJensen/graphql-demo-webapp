@@ -4,10 +4,8 @@ import SearchForm from "./SearchForm"
 import * as actions from "./actions"
 import searchConstants from "./constants"
 import auth from "auth"
+import withAuth from "../auth/AuthGuard";
 
-// Stateless functional container component that wraps the SearchForm
-// react-redux and redux-thunk will dynaimcally
-// prepare thr props to include everything
 
 const mapStateToProps = (store) => {
     return {
@@ -36,4 +34,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm) ;
+export default connect(mapStateToProps, mapDispatchToProps)(withAuth(SearchForm));

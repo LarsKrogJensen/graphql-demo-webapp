@@ -1,25 +1,12 @@
 import React, {PropTypes} from "react";
-import GraphiQL from "./CustomGraphiQL";
-// import {Icon} from "antd";
+//import GraphiQL from "./CustomGraphiQL";
+import GraphiQL from "graphiql"
 import "codemirror/theme/mdn-like.css"
 
 
 export default class QueryConsole extends React.Component {
 
     render() {
-        // if (this.props.token != null) {
-        //     return this.renderGraphiQL()
-        // }
-        //
-        // return (
-        //     <div style={{padding: 24}}>
-        //         <Modal title="Please sign in" visible={true} closable={false}
-        //                footer={[]}>
-        //             <AuthContainer/>
-        //         </Modal>
-        //     </div>
-        // )
-
         let style = {
             height: 'calc(100vh - 64px)',
             margin: 0,
@@ -29,10 +16,8 @@ export default class QueryConsole extends React.Component {
 
         return (
             <div style={style}>
-                <GraphiQL fetcher={this.props.fetcher}
+                <GraphiQL fetcher={this.props.fetcher}>
                           editorTheme="mdn-like">
-
-
                 </GraphiQL>
             </div>
         );
