@@ -1,5 +1,6 @@
 // @flow
-import React, {PropTypes} from "react";
+import React from "react";
+import PropTypes from 'prop-types';
 import {
     Alert,
     Icon,
@@ -10,21 +11,31 @@ import {
     Table
 } from "antd"
 import {autobind, debounce} from "core-decorators";
-import AuthContainer from "auth/AuthContainer"
+import AuthContainer from "../auth/AuthContainer"
 import "./search-form.css"
 
 const Search = Input.Search;
+
+// type SearchProps = {
+//     search: (query: String) => Promise<any>,
+//     searchQuery: string,
+//     token: string,
+//     loading: boolean,
+//     error: ?string,
+//     error_description: ?string,
+//     searchResult: Array<SearchItem>
+// }
 
 export default class SearchForm extends React.Component {
     
     @autobind
     @debounce(300)
     searchDebounced(searchQuery: string) {
-        this.props.search(searchQuery)
+        this.props.onSearch(searchQuery)
     }
 
     @autobind
-    onRowClick(record, index) {
+    onRowClick(record: any, index: number) {
         console.log(`Row clicked [${index}] record: ${record}`)
     }
 
@@ -34,7 +45,7 @@ export default class SearchForm extends React.Component {
         };
 
         let token = this.props.token;
-        if (token == null || token === "") {
+        if (token === null || token === "") {
             return (
                 <div style={{padding: 24}}>
 
@@ -46,7 +57,7 @@ export default class SearchForm extends React.Component {
             )
         }
         let alert;
-        if (this.props.error != null) {
+        if (this.props.error !== null) {
             alert = <Alert message={"Search failed: " + this.props.error_description} type="error" />
         }
 
@@ -101,16 +112,16 @@ export default class SearchForm extends React.Component {
 }
 
 SearchForm.propTypes = {
-    search: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired,
     searchQuery: PropTypes.string.isRequired,
     token: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
     error: PropTypes.string,
     error_description: PropTypes.string,
-    searchResult: PropTypes.arrayOf(React.PropTypes.shape({
-        id: React.PropTypes.string,
-        score: React.PropTypes.number,
-        name: React.PropTypes.string,
-        longName: React.PropTypes.string,
+    searchResult: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        score: PropTypes.number,
+        name: PropTypes.string,
+        longName: PropTypes.string,
     }))
 };

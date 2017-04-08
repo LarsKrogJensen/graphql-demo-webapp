@@ -90,7 +90,7 @@ declare type Person =  {
     lastName: ?string;
 }
 
-declare type SearchItem =  {
+export type SearchItem =  {
     id: ?string;
     score: ?number;
     name: ?string;
@@ -133,6 +133,4 @@ declare type PersonInput =  {
     firstName: string;
     lastName: string;
 }
-
-
 

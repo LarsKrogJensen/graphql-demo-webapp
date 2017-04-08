@@ -1,8 +1,9 @@
-import React, {PropTypes} from "react";
-//import GraphiQL from "./CustomGraphiQL";
+import React from "react";
+import PropTypes from 'prop-types/prop-types';
 import GraphiQL from "graphiql"
 import {Icon} from "antd"
 import "codemirror/theme/mdn-like.css"
+import "./graphiql.css"
 
 
 export default class QueryConsole extends React.Component {

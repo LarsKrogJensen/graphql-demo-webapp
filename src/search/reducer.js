@@ -1,17 +1,17 @@
 // @flow
 import * as types from "./action-types";
 
-import type  {SearchSuccessAction} from "./action-types"
+import type {SearchAction} from "./action-types"
 
-type State = {
+type SearchState = {
     searchQuery: string;
     searchResult: Array<SearchItem>;
-    error: string;
-    error_description: string;
+    error: ?string;
+    error_description: ?string;
     loading: boolean;
 
 }
-const initialState: State = {
+const initialState: SearchState = {
     searchQuery: "",
     searchResult: [],
     error: null,
@@ -19,29 +19,34 @@ const initialState: State = {
     loading: false
 };
 
-export default function (state: State = initialState, action: SearchSuccessAction) {
+export default function (state: SearchState = initialState, action: SearchAction): SearchState {
     switch (action.type) {
         case types.SEARCH_INIT:
+            let {searchQuery} = action;
             return {
                 ...state,
                 loading: true,
                 error_description: null,
-                ...action
+                error: null,
+                searchQuery
             };
 
         case types.SEARCH_SUCCESS:
+            let {searchResult} = action;
             return {
                 ...state,
                 loading: false,
-                ...action
+                searchResult
             };
 
         case types.SEARCH_FAILED:
+            let {error, error_description} = action;
             return {
                 ...state,
                 searchResult: [],
                 loading: false,
-                ...action
+                error,
+                error_description
             };
 
         default:

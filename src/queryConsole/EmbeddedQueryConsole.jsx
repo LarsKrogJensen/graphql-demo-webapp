@@ -1,5 +1,5 @@
 import React, {PropTypes} from "react";
-import GraphiQL from "./CustomGraphiQL";
+import GraphiQL from "graphiql";
 import "codemirror/theme/mdn-like.css"
 
 

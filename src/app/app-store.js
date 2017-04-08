@@ -19,12 +19,12 @@ if (process.env.NODE_ENV === `development`) {
 }
 
 
-const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
+const persistedState = localStorage.getItem('reduxStatex') ? JSON.parse(localStorage.getItem('reduxStatex')) : {}
 
 const store = createStore(reducers, persistedState, composeEnhancers(applyMiddleware(...middlewares)));
 
 store.subscribe(() => {
-    console.log("State change, about to save")
+    console.log("State change, about to save");
     persistState()
 
 })
@@ -33,7 +33,7 @@ store.subscribe(() => {
 function persistState()
 {
     console.log("saving")
-    //localStorage.setItem('reduxState', JSON.stringify(store.getState()))
+    //localStorage.setItem('reduxStatex', JSON.stringify(store.getState()))
 }
 
 export default store;

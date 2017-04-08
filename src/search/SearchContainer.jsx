@@ -1,3 +1,4 @@
+// @flow
 import * as queryApi from "api/query-api";
 import {connect} from "react-redux";
 import SearchForm from "./SearchForm"
@@ -7,7 +8,7 @@ import auth from "auth"
 import withAuth from "../auth/AuthGuard";
 
 
-const mapStateToProps = (store) => {
+const mapStateToProps = (store: AppStore) => {
     return {
         token: store[auth.constants.NAME].token.access_token || "",
         ...store[searchConstants.NAME]
@@ -29,7 +30,7 @@ const searchThunk = (searchQuery) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        search: (searhQuery) => dispatch(searchThunk(searhQuery))
+        onSearch: (searchQuery) => dispatch(searchThunk(searchQuery))
     }
 };
 

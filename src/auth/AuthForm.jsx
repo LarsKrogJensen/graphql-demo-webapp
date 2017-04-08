@@ -1,9 +1,9 @@
-import React, {PropTypes} from "react";
+import React from "react";
+import PropTypes from 'prop-types/prop-types';
 import {Alert, Modal, Form, Icon, Input, Button, Checkbox} from "antd";
 import "./auth-form.css";
 import {autobind} from "core-decorators";
 const FormItem = Form.Item;
-
 class AuthForm extends React.Component {
 
     @autobind
@@ -32,7 +32,7 @@ class AuthForm extends React.Component {
         let alert = null;
 
         let token = this.props.token;
-        if (token != null && token.error != null) {
+        if (token !== null && token.error !== null) {
             alert = (
                 <Alert
                     message={token.error}
@@ -93,10 +93,10 @@ AuthForm.propTypes = {
     password: PropTypes.string.isRequired,
     remember: PropTypes.bool.isRequired,
     loading: PropTypes.bool.isRequired,
-    token: React.PropTypes.shape({
-        access_token: React.PropTypes.string,
-        error: React.PropTypes.string,
-        error_description: React.PropTypes.string
+    token: PropTypes.shape({
+        access_token: PropTypes.string,
+        error: PropTypes.string,
+        error_description: PropTypes.string
     }).isRequired
 
 };

@@ -1,7 +1,7 @@
 import baseUrl from "api/base-url";
 
 
-export async function graphQuery(token, queryParams) {
+export async function graphQuery(token: string, queryParams: string) : Promise<any>{
     let options = {
         method: 'post',
         headers: {
