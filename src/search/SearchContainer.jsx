@@ -1,4 +1,3 @@
-// @flow
 import * as queryApi from "api/query-api";
 import {connect} from "react-redux";
 import SearchForm from "./SearchForm"
@@ -8,7 +7,7 @@ import auth from "auth"
 import withAuth from "../auth/AuthGuard";
 
 
-const mapStateToProps = (store: AppStore) => {
+const mapStateToProps = (store) => {
     return {
         token: store[auth.constants.NAME].token.access_token || "",
         ...store[searchConstants.NAME]

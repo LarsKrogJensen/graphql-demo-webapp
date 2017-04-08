@@ -1,5 +1,4 @@
 import React from "react";
-// import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import {Layout} from "antd";
 import "./AppFrame.css"
 import logo from "assets/logo.svg";
@@ -27,21 +26,4 @@ export default class AppFrame extends React.Component {
             </Layout>
         </div>
     }
-
-    //avoid inserting a container hmm: causes strange errors at runtime
-    // firstChild(props) {
-    //   const childrenArray = React.Children.toArray(props.children);
-    //   return childrenArray[0] || null;
-    // }
 }
-
-//
-// <ReactCSSTransitionGroup
-//                                 component="div"
-//                                 transitionLeave={false}
-//                                 transitionName="example"
-//                                 transitionEnterTimeout={300}>
-//                             <div key={location.pathname}>
-//                                 {this.props.children}
-//                             </div>
-//                         </ReactCSSTransitionGroup>

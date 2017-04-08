@@ -3,5 +3,4 @@
 .*/test/*
 [include]
 [libs]
-flow-typed
 src/flow-typed

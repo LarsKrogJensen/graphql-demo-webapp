@@ -1,6 +1,9 @@
 import React, {PropTypes} from "react";
 import GraphiQL from "graphiql";
-import "codemirror/theme/mdn-like.css"
+import "./graphiql.css"
+import "./embedded.css"
+
+// import "codemirror/theme/mdn-like.css"
 
 
 export default class EmbeddedQueryConsole extends React.Component {
@@ -9,22 +12,12 @@ export default class EmbeddedQueryConsole extends React.Component {
     }
 
     render() {
-        let style = {
-            height: '200px',
-            margin: 0,
-            width: '100%',
-            overflow: 'hidden',
-            borderTop: '1px solid #e0e0e0',
-            borderRight: '1px solid #e0e0e0',
-            borderBottom: '1px solid #e0e0e0'
-        };
 
         return (
-            <div style={style}>
+            <div className="embedded bordered">
                 <GraphiQL fetcher={this.props.fetcher}
                           embedded
-                          query={this.props.query}
-                          editorTheme="mdn-like">
+                          query={this.props.query}>
                 </GraphiQL>
             </div>
         );

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types/prop-types';
 import GraphiQL from "graphiql"
 import {Icon} from "antd"
-import "codemirror/theme/mdn-like.css"
+// import "codemirror/theme/mdn-like.css"
 import "./graphiql.css"
 
 
@@ -19,7 +19,6 @@ export default class QueryConsole extends React.Component {
         return (
             <div style={style}>
                 <GraphiQL fetcher={this.props.fetcher}>
-                    editorTheme="mdn-like">
                     <GraphiQL.Logo>
                         <div id="logo">
                             <Icon type="laptop"/>
@@ -32,12 +31,6 @@ export default class QueryConsole extends React.Component {
     }
 }
 
-// <CustomGraphiQL.Logo>
-//                         <div id="logo">
-//                             <Icon type="laptop"/>
-//                             <div style={{display: "inline", paddingLeft: "16px"}}>Query Console</div>
-//                         </div>
-//                     </CustomGraphiQL.Logo>
 QueryConsole.propTypes = {
     token: PropTypes.string,
     embedded: PropTypes.bool,

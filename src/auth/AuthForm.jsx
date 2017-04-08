@@ -32,7 +32,7 @@ class AuthForm extends React.Component {
         let alert = null;
 
         let token = this.props.token;
-        if (token !== null && token.error !== null) {
+        if (token !== null && token.error) {
             alert = (
                 <Alert
                     message={token.error}

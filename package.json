@@ -59,9 +59,8 @@
   },
   "dependencies": {
     "antd": "^2.9.0",
-    "codemirror": "^5.23.0",
     "core-js": "^2.4.1",
-    "graphiql": "^0.9.1",
+    "graphiql": "^0.9.3",
     "graphql": "^0.9.2",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.4",
