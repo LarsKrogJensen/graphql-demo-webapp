@@ -13,14 +13,14 @@ class AppNav extends React.Component {
         console.log(param.key);
 
         if (param.key === "/signout") {
-           this.props.signout()
+            this.props.signout()
         } else {
             hashHistory.push(param.key)
         }
     }
 
     render() {
-        let subMenuTitle = <Badge count={1} style={{ backgroundColor: '#87d068' }} ><Icon type="user"/> </Badge>
+        let subMenuTitle = <Badge count={1} style={{backgroundColor: '#87d068'}}><Icon type="user"/> </Badge>
 
         return (
             <Menu theme="dark"
@@ -28,7 +28,7 @@ class AppNav extends React.Component {
                   onSelect={this.onMenuSelected}
                   selectedKeys={[this.props.path]}
                   style={{lineHeight: '63px', float: "right"}}>
-                <Menu.Item key="/docs/intro">
+                <Menu.Item key="/docs">
                     <Icon type="user"/>
                     <span className="nav-text">Docs</span>
                 </Menu.Item>

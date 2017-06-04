@@ -3,14 +3,12 @@ import PropTypes from 'prop-types/prop-types';
 import {
     Alert,
     Icon,
-    Modal,
     Row,
     Col,
     Input,
     Table
 } from "antd"
 import {autobind, debounce} from "core-decorators";
-import AuthContainer from "../auth/AuthContainer"
 import "./search-form.css"
 
 const Search = Input.Search;
@@ -43,18 +41,7 @@ export default class SearchForm extends React.Component {
             emptyText: <span><Icon type="frown-o"/>Nothing found</span>,
         };
 
-        let token = this.props.token;
-        if (token === null || token === "") {
-            return (
-                <div style={{padding: 24}}>
 
-                    <Modal title="Please sign in" visible={true} closable={false}
-                           footer={[]}>
-                        <AuthContainer/>
-                    </Modal>
-                </div>
-            )
-        }
         let alert;
         if (this.props.error !== null) {
             alert = <Alert message={"Search failed: " + this.props.error_description} type="error" />
@@ -113,7 +100,6 @@ export default class SearchForm extends React.Component {
 SearchForm.propTypes = {
     onSearch: PropTypes.func.isRequired,
     searchQuery: PropTypes.string.isRequired,
-    token: PropTypes.string.isRequired,
     loading: PropTypes.bool.isRequired,
     error: PropTypes.string,
     error_description: PropTypes.string,
