@@ -1,6 +1,6 @@
 import React from "react";
 import src from "../../assets/README.md"
-import Markdown from 'react-components-markdown';
+import Markdown from '../../markdown';
 import "../markdown.css"
 import QueryConsole from '../../queryConsole/QueryConsoleContainer'
 import withMarkdown from "../MarkdownContainer"

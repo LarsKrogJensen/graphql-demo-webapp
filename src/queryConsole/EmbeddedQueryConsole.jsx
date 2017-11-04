@@ -14,11 +14,13 @@ export default class EmbeddedQueryConsole extends React.Component {
     render() {
 
         return (
-            <div className="embedded bordered">
-                <GraphiQL fetcher={this.props.fetcher}
-                          embedded
-                          query={this.props.query}>
-                </GraphiQL>
+            <div className="reset-this">
+                <div className="embedded bordered graphiql">
+                    <GraphiQL fetcher={this.props.fetcher}
+                              embedded
+                              query={this.props.query}>
+                    </GraphiQL>
+                </div>
             </div>
         );
     }

@@ -6,10 +6,6 @@
 ##### h5 Heading
 ###### h6 Heading
 
-### [Custom containers](https://github.com/markdown-it/markdown-it-container)
-
-
-<SuperComponent />
 
 ## Horizontal Rules
 
@@ -21,17 +17,32 @@ ___
 
 ## Example
 
-::: warning
-*here be dragons*
-:::
-
 This markdown file is also example.
 
 You can use SuperComponent with children
 
+::: explorer
+   query {
+    listing (if
+        id
+        name
+   }
+:::
+  
+ 
+lalaal
 
-[Query console, click to view](http://github.io/react-components-markdown/#exampleConsole)
+::: explorer
+   query {
+    listing (if
+        id
+        name
+   }
+:::
 
+lalala
+
+  
 ## Typographic replacements
 
 Enable typographer option to see result.
@@ -247,4 +258,10 @@ It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 
 ::: warning
 *here be dragons*
+:::
+
+asasas
+
+::: warning
+{ lars }
 :::
