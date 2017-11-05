@@ -22,7 +22,7 @@ export default class DocsContainer extends React.Component {
         let rootPath = path.substr(0, path.lastIndexOf("/"));
         return (
             <Layout style={{padding: '24px 0'}}>
-                <Sider width={200}>
+                <Sider width={200} style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0 }}>
                     <Menu
                         mode="inline"
                         onSelect={this.onMenuSelected}
@@ -58,7 +58,7 @@ export default class DocsContainer extends React.Component {
                         </SubMenu>
                     </Menu>
                 </Sider>
-                <Content style={{padding: '0 24px', minHeight: 280}}>
+                <Content style={{padding: '0 24px', minHeight: 280, marginLeft: 200}}>
                     <BackTop/>
                     {this.props.children}
                 </Content>

@@ -19,7 +19,7 @@ export default class AppFrame extends React.Component {
                     
                 </Header>
                 <Layout>
-                    <Content style={{height: "100%"}}>
+                    <Content style={{height: "100%", overflowY: "auto"}}>
                         {this.props.children}
                     </Content>
                 </Layout>

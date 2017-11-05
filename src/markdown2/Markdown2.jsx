@@ -1,13 +1,14 @@
 import * as React from "react"
 import markdownIt from 'markdown-it';
+import hljs from "highlight.js"
 import emoji from "markdown-it-emoji"
 import deflist from "markdown-it-deflist"
 import abbr from "markdown-it-abbr"
+import footnote from "markdown-it-footnote"
 import "../docs/markdown.css"
 import QueryConsole from "../queryConsole/QueryConsoleContainer"
 
 export default class Markdown2 extends React.Component {
-
 
     constructor() {
         super();
@@ -29,29 +30,44 @@ export default class Markdown2 extends React.Component {
     split(mdSource) {
         let blocks = mdSource.split(":::");
 
-        return blocks.map(block => {
+        return blocks.map((block, index) => {
             let infoParts = block.split("\n");
             if (infoParts.length > 0 && infoParts[0].indexOf("explorer") > -1) {
-                return this.renderExplorer(infoParts.slice(1).join("\n"));
+                return this.renderExplorer(infoParts.slice(1).join("\n"), index);
             } else {
-                return this.renderMarkdown(block);
+                return this.renderMarkdown(block, index);
             }
         });
     }
 
-    renderMarkdown(source) {
-        let html = markdownIt().use(emoji).use(abbr).use(deflist).render(source);
+    renderMarkdown(source, key) {
+
+        const md = markdownIt({
+            highlight(str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    try {
+                        return hljs.highlight(lang, str, true).value;
+                    } catch (__) {/* */
+                    }
+                }
+                return (
+                    `${md.utils.escapeHtml(str)}`
+                );
+            },
+        }).use(emoji).use(abbr).use(deflist).use(footnote);
+        
+        let html = md.render(source);
 
         return (
-            <div
-                className="github-markdown__markdown-body__97ba8"
-                dangerouslySetInnerHTML={{__html: html}}
+            <div key={key}
+                 className="github-markdown__markdown-body__97ba8"
+                 dangerouslySetInnerHTML={{__html: html}}
             />)
     }
 
-    renderExplorer(source) {
+    renderExplorer(source, key) {
         return (
-            <div style={{paddingTop: 16, paddingBottom: 16}}>
+            <div key={key} style={{paddingTop: 16, paddingBottom: 16}}>
                 <QueryConsole embedded={true} query={source}/>
             </div>
         )
